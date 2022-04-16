@@ -15,6 +15,7 @@
 
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, strong) NSMutableArray *favoriteList;
 
 @end
 
@@ -86,6 +87,7 @@
     return _listTabelView;
 }
 
+//直接在工程文件获取数组了，也没有网络请求，就不存本地了。
 - (NSMutableArray *)musicList {
     if (_musicList == nil) {
         
@@ -128,7 +130,7 @@
     }
     
     cell.musicModel = _musicList[indexPath.row];
-    
+    //获取model后设置数据。
     [cell setInfo];
     
     return cell;
@@ -154,11 +156,32 @@
 #pragma mark - 按钮响应方法
 
 - (void)touchUpInsideDailyRecmdBtn:(UIButton *)dailyRecmdBtn {
-    NSLog(@"点击每日推荐按钮");
+    
+    //用随机数来模拟每日推荐的歌单，重复也没关系
+    NSMutableArray *dailyMusicList = [[NSMutableArray alloc]initWithCapacity:0];
+    
+    for (NSInteger i = 0; i < 2; i++) {
+        NSInteger randomNumber = arc4random() % 4;
+        
+        [dailyMusicList addObject:_musicList[randomNumber]];
+        
+    }
+    
+    DailyRecmViewController *recm = [[DailyRecmViewController alloc] init];
+    
+    recm.musicList = dailyMusicList;
+    [self.navigationController pushViewController:recm animated:YES];
+    
+    
 }
 
 - (void)touchUpInsideFavorateBtn:(UIButton *)favorateBtn {
-    NSLog(@"点击收藏列表按钮");
+    
+    FavoriteViewController *favo = [[FavoriteViewController alloc] init];
+    favo.musicList = self.favoriteList;
+    
+    [self.navigationController pushViewController:favo animated:YES];
+   
 }
 
 

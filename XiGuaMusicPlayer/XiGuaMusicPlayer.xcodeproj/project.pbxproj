@@ -25,6 +25,8 @@
 		9B5954B9280AAC2100A3022E /* MusicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5954B8280AAC2100A3022E /* MusicModel.m */; };
 		A6D03DEB280AB5F500D2CAC3 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D03DEA280AB5F500D2CAC3 /* HomeViewController.m */; };
 		A6D03DEF280AB66200D2CAC3 /* ListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D03DEE280AB66200D2CAC3 /* ListTableViewCell.m */; };
+		A6D03DF2280AD01400D2CAC3 /* DailyRecmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D03DF1280AD01400D2CAC3 /* DailyRecmViewController.m */; };
+		A6D03DF5280AD03100D2CAC3 /* FavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D03DF4280AD03100D2CAC3 /* FavoriteViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +59,10 @@
 		A6D03DEA280AB5F500D2CAC3 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		A6D03DED280AB66200D2CAC3 /* ListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListTableViewCell.h; sourceTree = "<group>"; };
 		A6D03DEE280AB66200D2CAC3 /* ListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListTableViewCell.m; sourceTree = "<group>"; };
+		A6D03DF0280AD01400D2CAC3 /* DailyRecmViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DailyRecmViewController.h; sourceTree = "<group>"; };
+		A6D03DF1280AD01400D2CAC3 /* DailyRecmViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DailyRecmViewController.m; sourceTree = "<group>"; };
+		A6D03DF3280AD03100D2CAC3 /* FavoriteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteViewController.h; sourceTree = "<group>"; };
+		A6D03DF4280AD03100D2CAC3 /* FavoriteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoriteViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +114,10 @@
 			children = (
 				A6D03DE8280AB5D300D2CAC3 /* HomeViewController */,
 				9B5954A4280A7FA800A3022E /* PlayViewController */,
+				A6D03DF0280AD01400D2CAC3 /* DailyRecmViewController.h */,
+				A6D03DF1280AD01400D2CAC3 /* DailyRecmViewController.m */,
+				A6D03DF3280AD03100D2CAC3 /* FavoriteViewController.h */,
+				A6D03DF4280AD03100D2CAC3 /* FavoriteViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -284,6 +294,8 @@
 				A6D03DEB280AB5F500D2CAC3 /* HomeViewController.m in Sources */,
 				9B5954A7280A7FC100A3022E /* PlayViewController.m in Sources */,
 				9B5954AE280A87E600A3022E /* UIImage+SFFont.m in Sources */,
+				A6D03DF2280AD01400D2CAC3 /* DailyRecmViewController.m in Sources */,
+				A6D03DF5280AD03100D2CAC3 /* FavoriteViewController.m in Sources */,
 				9B595478280A7AF100A3022E /* SceneDelegate.m in Sources */,
 				A6D03DEF280AB66200D2CAC3 /* ListTableViewCell.m in Sources */,
 			);
