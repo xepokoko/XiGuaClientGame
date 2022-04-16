@@ -6,6 +6,8 @@
 //
 
 #import "SceneDelegate.h"
+#import "PlayViewController.h"
+#import "UIImage+SFFont.h"
 
 @interface SceneDelegate ()
 
@@ -22,12 +24,13 @@
     
     UIViewController *controller1 = [[UIViewController alloc] init];
     controller1.view.backgroundColor = [UIColor whiteColor];
-    controller1.title = @"controller1";
+    controller1.title = @"歌单";
+    controller1.tabBarItem.image = [UIImage systemImageNamed:@"list.dash"];
     [tabBarController addChildViewController:controller1];
     
-    UIViewController *controller2 = [[UIViewController alloc] init];
+    PlayViewController *controller2 = [[PlayViewController alloc] init];
     controller2.view.backgroundColor = [UIColor whiteColor];
-    controller2.title = @"controller2";
+    controller2.title = @"播放界面";
 
     [tabBarController addChildViewController:controller2];
     
