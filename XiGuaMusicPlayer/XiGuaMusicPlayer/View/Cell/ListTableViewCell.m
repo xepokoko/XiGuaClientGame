@@ -6,8 +6,7 @@
 //
 
 #import "ListTableViewCell.h"
-#define ScreenHeight [UIScreen mainScreen].bounds.size.height
-#define ScreenWidth [UIScreen mainScreen].bounds.size.width
+#import "Common.h"
 
 @implementation ListTableViewCell
 
@@ -26,19 +25,50 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
     if (self) {
+        CGFloat padding = 10;
+        CGFloat cardViewW = SCREENWIDTH - 2 * padding;
+        CGFloat cardViewH = 90;
+        CGFloat cardViewX = padding;
+        CGFloat cardViewY = padding;
+        UIView *cardView = [[UIView alloc] initWithFrame:CGRectMake(cardViewX,
+                                                                    cardViewY,
+                                                                    cardViewW,
+                                                                    cardViewH)];
+        cardView.backgroundColor = [UIColor whiteColor];
+        cardView.layer.cornerRadius = 10;
+        [self.contentView addSubview:cardView];
+        self.cardView = cardView;
         
         //初始化控件
-        self.picImageView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, 50, 50)];
-        _picImageView.backgroundColor = [UIColor grayColor];
+        CGFloat picW = 70;
+        CGFloat picH = picW;
+        self.picImageView = [[UIImageView alloc]initWithFrame:CGRectMake(padding,
+                                                                         padding,
+                                                                         picW,
+                                                                         picH)];
+        _picImageView.layer.cornerRadius = 10;
+        _picImageView.image = [UIImage imageNamed:_musicModel.songName];
         [self.contentView addSubview:_picImageView];
         
-        self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 5, ScreenWidth-60, 25)];
-        _titleLabel.font = [UIFont systemFontOfSize:16];
+        CGFloat labelX = CGRectGetMaxX(_picImageView.frame) + padding;
+        CGFloat titleLabelY = padding;
+        CGFloat labelW = SCREENWIDTH - padding;
+        CGFloat labelH = picH / 2;
+        self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(labelX,
+                                                                   titleLabelY,
+                                                                   labelW,
+                                                                   labelH)];
+        _titleLabel.font = [UIFont systemFontOfSize:24 weight:8];
+        _titleLabel.textColor = [UIColor blackColor];
         _titleLabel.text = @"歌曲名称";
         [self.contentView addSubview:_titleLabel];
         
-        self.authorLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 30, ScreenWidth-60, 20)];
-        _authorLabel.font = [UIFont systemFontOfSize:14];
+        CGFloat authorLabelY = CGRectGetMaxY(_titleLabel.frame);
+        self.authorLabel = [[UILabel alloc]initWithFrame:CGRectMake(labelX,
+                                                                    authorLabelY,
+                                                                    labelW,
+                                                                    labelH)];
+        _authorLabel.font = [UIFont systemFontOfSize:18 weight:6];
         _authorLabel.textColor = [UIColor lightGrayColor];
         _authorLabel.text = @"歌手名称";
         [self.contentView addSubview:_authorLabel];

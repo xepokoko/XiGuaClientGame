@@ -15,6 +15,8 @@
 
 /// 进度条
 @property (nonatomic, weak)UISlider *processSlider;
+/// 是否在拖动状态
+@property (nonatomic, assign, getter=isDragging)BOOL dragging;
 /// 音量条
 @property (nonatomic, weak)UISlider *volumeSlider;
 
@@ -37,12 +39,16 @@
     self.tabBarController.tabBar.hidden = YES;
     [self.tabBarController.view.subviews lastObject].hidden = YES;
     
-//    NSNotificationCenter addObserver:self forKeyPath:@ options:<#(NSKeyValueObservingOptions)#> context:<#(nullable void *)#>
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateProcessSlider) name:@"updateProgressNotification" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLikeBtn) name:@"updateLikeBtnNotification" object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     self.tabBarController.tabBar.hidden = NO;
     [self.tabBarController.view.subviews lastObject].hidden = NO;
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"updateProgressNotification" object:nil];
 }
 
 - (void)viewDidLoad {
@@ -68,6 +74,8 @@
     processSlider.transform = CGAffineTransformMakeRotation(-M_PI_2);
     processSlider.maximumValue = [MusicPlayerCenter defaultCenter].player.duration;
     processSlider.minimumTrackTintColor = [UIColor systemBlueColor];
+    [processSlider addTarget:self action:@selector(sliderTouchDown) forControlEvents:UIControlEventValueChanged | UIControlEventTouchDown];
+    [processSlider addTarget:self action:@selector(sliderTouchUp) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
     [self.view addSubview:processSlider];
     self.processSlider = processSlider;
     
@@ -134,25 +142,23 @@
 #pragma mark - 按钮点击事件
 /// 点击上一首
 - (void)backwardBtnClicked:(UIButton *)sender {
-    
+    [[MusicPlayerCenter defaultCenter] playLastMusic];
 }
 
 /// 播放暂停
 - (void)playPauseBtnClicked:(UIButton *)sender {
     MusicPlayerCenter *center = [MusicPlayerCenter defaultCenter];
-    
     if ([center isPlaying]) {
         [self.playPauseBtn setImage:[UIImage systemImageNamed:@"play.fill" configurationWithFontOfSize:40] forState:UIControlStateNormal];
     } else {
         [self.playPauseBtn setImage:[UIImage systemImageNamed:@"pause.fill" configurationWithFontOfSize:40] forState:UIControlStateNormal];
     }
-    center.playing = !center.playing;
     [center togglePlayPause];
 }
 
 /// 点击下一首
 - (void)forwardBtnClicked:(UIButton *)sender {
-    
+    [[MusicPlayerCenter defaultCenter] playNextMusic];
 }
 
 /// 点击收藏
@@ -174,13 +180,13 @@
     
     NSString *imageName = [NSString string];
     switch ([MusicPlayerCenter defaultCenter].playMode) {
-        case 0:
+        case MusicPlayModeRepeat:
             imageName = @"repeat";
             break;
-        case 1:
+        case MusicPlayModeRepeatOne:
             imageName = @"repeat.1";
             break;
-        case 2:
+        case MusicPlayModeShuffle:
             imageName = @"shuffle";
             break;
         default:
@@ -189,10 +195,37 @@
     [self.playModeBtn setImage:[UIImage systemImageNamed:imageName configurationWithFontOfSize:40] forState:UIControlStateNormal];
 }
 
+
+/// 切换歌曲时更新 likeBtn
+- (void)updateLikeBtn {
+    if ([[MusicPlayerCenter defaultCenter].music isFavorite]) {
+        [self.likeBtn setImage:[UIImage systemImageNamed:@"heart.fill" configurationWithFontOfSize:40] forState:UIControlStateNormal];
+    } else {
+        [self.likeBtn setImage:[UIImage systemImageNamed:@"heart" configurationWithFontOfSize:40] forState:UIControlStateNormal];
+    }
+}
+
+#pragma mark - slider 事件
 /// 更改音量
 - (void)changeVolume {
     [MusicPlayerCenter defaultCenter].player.volume = self.volumeSlider.value;
 }
 
+/// 随着 timer 自动更新播放进度
+- (void)updateProcessSlider {
+    if ([self isDragging]) {    // 正在手动拖动的时候不更新
+        return;
+    }
+    self.processSlider.value = [MusicPlayerCenter defaultCenter].player.currentTime;
+}
 
+/// 手动更新播放进度
+- (void)sliderTouchDown {
+    self.dragging = YES;
+}
+
+- (void)sliderTouchUp {
+    self.dragging = NO;
+    [[MusicPlayerCenter defaultCenter].player setCurrentTime:_processSlider.value];
+}
 @end

@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ListTableViewCell : UITableViewCell
 
-@property (nonatomic ,strong) UILabel *indexLabel;
+//@property (nonatomic ,strong) UILabel *indexLabel;
 
 @property (nonatomic, strong) UIImageView *picImageView;
 
@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *authorLabel;
 
 @property (nonatomic, strong) MusicModel *musicModel;
+
+@property (nonatomic, weak) UIView *cardView;
 
 
 - (void)setInfo;

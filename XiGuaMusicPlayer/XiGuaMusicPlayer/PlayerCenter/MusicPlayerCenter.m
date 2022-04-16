@@ -17,10 +17,7 @@ static MusicPlayerCenter *playerCenter;
 
 
 - (BOOL)isPlaying {
-    if (!_playing) {
-        _playing = YES;
-    }
-    return _playing;
+    return [self.player isPlaying];
 }
 
 - (MusicPlayMode)playMode {
@@ -43,7 +40,6 @@ static MusicPlayerCenter *playerCenter;
     
     self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
     self.player.delegate = self;
-    self.player.volume = 0.5;
     self.player.currentTime = 0;
 }
 
@@ -77,7 +73,25 @@ static MusicPlayerCenter *playerCenter;
 
 /// 播放下一首歌
 - (void)playNextMusic {
+    if ([self.delegate respondsToSelector:@selector(playNextMusicWithPlayMode:)]) {
+        [self.delegate playNextMusicWithPlayMode:self.playMode];
+    }
+    [self playMusic];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateLikeBtnNotification" object:nil];
+}
+
+/// 播放上一首歌
+- (void)playLastMusic {
+    if (self.player.currentTime > 20) {
+        self.player.currentTime = 0;
+        return;
+    }
     
+    if ([self.delegate respondsToSelector:@selector(playLastMusicWithPlayMode:)]) {
+        [self.delegate playLastMusicWithPlayMode:self.playMode];
+    }
+    [self playMusic];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateLikeBtnNotification" object:nil];
 }
 
 /// 播放完毕，player 的代理
@@ -87,19 +101,6 @@ static MusicPlayerCenter *playerCenter;
     } else {    //继续播放当前歌曲
         [self playMusic];
     }
-}
-
-- (void)updateProgress {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateProgressNotification" object:nil];
-}
-
-- (NSTimer *)progressTimer {
-    if (!_progressTimer) {
-        _progressTimer = [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
-            [self updateProgress];
-        }];
-    }
-    return _progressTimer;
 }
 
 @end

@@ -13,9 +13,12 @@
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 
-@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource,MusicPlayerCenterDelegate>
 
 @property (nonatomic, strong) NSMutableArray *favoriteList;
+
+/// 记录选中的歌曲的 indexPath
+@property (nonatomic, strong)NSIndexPath *selectedIndexPath;
 
 @end
 
@@ -27,7 +30,7 @@
     
     [self setAndLayoutViews];
     
-    
+    self.view.backgroundColor = [UIColor systemGray6Color];
     
     
 }
@@ -79,7 +82,7 @@
         
         _listTabelView = [[UITableView alloc]initWithFrame:CGRectMake(0, naviHeight+spaceHeight, ScreenWidth, ScreenHeight-naviHeight-globalPlayerHeight-tabHeight-spaceHeight)];
         
-        _listTabelView.backgroundColor = [UIColor whiteColor];
+        _listTabelView.backgroundColor = [UIColor systemGray6Color];
         _listTabelView.delegate = self;
         _listTabelView.dataSource = self;
         
@@ -140,15 +143,25 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
-    return 60;
+    return 110;
 }
 
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     MusicModel *music = self.musicList[indexPath.row];
-    [MusicPlayerCenter defaultCenter].music = music;
+    MusicPlayerCenter *center = [MusicPlayerCenter defaultCenter];
+    center.music = music;
+    center.delegate = self;
+    if (center.progressTimer == nil) {
+        center.progressTimer = [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"updateProgressNotification" object:nil];
+        }];
+    }
     PlayViewController *controller = [[PlayViewController alloc] init];
+    
+    _selectedIndexPath = indexPath;
+    
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -184,6 +197,53 @@
    
 }
 
+#pragma mark - MusicPlayerCenterDelegate
+- (void)playLastMusicWithPlayMode:(MusicPlayMode)playMode {
+    MusicPlayerCenter *center = [MusicPlayerCenter defaultCenter];
+    MusicModel *music = [[MusicModel alloc] init];
+    NSInteger newRow = 0;
+    switch (playMode) {
+        case MusicPlayModeRepeat:
+            newRow = _selectedIndexPath.row - 1;
+            break;
+        case MusicPlayModeShuffle:
+            // 防止随到同一首
+            newRow = _selectedIndexPath.row - arc4random() % (_musicList.count - 1) - 1;
+            break;
+        default:
+            break;
+    }
+    if (newRow < 0) {
+        newRow += _musicList.count;
+    }
+    
+    music = _musicList[newRow];
+    center.music = music;
+    self.selectedIndexPath = [NSIndexPath indexPathForRow:newRow inSection:_selectedIndexPath.section];
+}
+
+- (void)playNextMusicWithPlayMode:(MusicPlayMode)playMode {
+    MusicPlayerCenter *center = [MusicPlayerCenter defaultCenter];
+    MusicModel *music = [[MusicModel alloc] init];
+    NSInteger newRow = 0;
+    switch (playMode) {
+        case MusicPlayModeRepeat:
+            newRow =_selectedIndexPath.row + 1;
+            break;
+        case MusicPlayModeShuffle:
+            newRow = _selectedIndexPath.row + arc4random() % (_musicList.count - 1) + 1;
+            break;
+        default:
+            break;
+    }
+    if (newRow >= _musicList.count) {
+        newRow -= _musicList.count;
+    }
+    
+    music = _musicList[newRow];
+    center.music = music;
+    self.selectedIndexPath = [NSIndexPath indexPathForRow:newRow inSection:_selectedIndexPath.section];
+}
 
 @end
 
