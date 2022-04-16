@@ -7,6 +7,7 @@
 
 #import "HomeViewController.h"
 #import "PlayViewController.h"
+#import "MusicPlayerCenter.h"
 #import "MusicModel.h"
 
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
@@ -143,6 +144,8 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    MusicModel *music = self.musicList[indexPath.row];
+    [MusicPlayerCenter defaultCenter].music = music;
     PlayViewController *controller = [[PlayViewController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
 }

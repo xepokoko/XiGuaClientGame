@@ -13,9 +13,6 @@
 
 @interface PlayViewController ()
 
-/// 播放中心
-@property (nonatomic, weak)MusicPlayerCenter *playerCenter;
-
 /// 进度条
 @property (nonatomic, weak)UISlider *processSlider;
 /// 音量条
@@ -38,6 +35,14 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     self.tabBarController.tabBar.hidden = YES;
+    [self.tabBarController.view.subviews lastObject].hidden = YES;
+    
+//    NSNotificationCenter addObserver:self forKeyPath:@ options:<#(NSKeyValueObservingOptions)#> context:<#(nullable void *)#>
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    self.tabBarController.tabBar.hidden = NO;
+    [self.tabBarController.view.subviews lastObject].hidden = NO;
 }
 
 - (void)viewDidLoad {
@@ -45,6 +50,8 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     [self layoutSubviews];
+    
+    [[MusicPlayerCenter defaultCenter] playMusic];
 }
 
 - (void)layoutSubviews {
@@ -59,6 +66,7 @@
                                                                          sliderW)];
     processSlider.center = CGPointMake(processSliderCenterX, processSliderCenterY);
     processSlider.transform = CGAffineTransformMakeRotation(-M_PI_2);
+    processSlider.maximumValue = [MusicPlayerCenter defaultCenter].player.duration;
     processSlider.minimumTrackTintColor = [UIColor systemBlueColor];
     [self.view addSubview:processSlider];
     self.processSlider = processSlider;
@@ -72,6 +80,8 @@
                                                                         sliderW)];
     volumeSlider.center = CGPointMake(volumeSliderCenterX, volumeSliderCenterY);
     volumeSlider.transform = CGAffineTransformMakeRotation(-M_PI_2);
+    volumeSlider.value = [MusicPlayerCenter defaultCenter].player.volume;
+    [volumeSlider addTarget:self action:@selector(changeVolume) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:volumeSlider];
     self.volumeSlider = volumeSlider;
     
@@ -100,7 +110,7 @@
                 self.backwardBtn = button;
                 break;
             case 2:
-                [button setImage:[UIImage systemImageNamed:@"play.fill" configurationWithFontOfSize:40] forState:UIControlStateNormal];
+                [button setImage:[UIImage systemImageNamed:@"pause.fill" configurationWithFontOfSize:40] forState:UIControlStateNormal];
                 [button addTarget:self action:@selector(playPauseBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
                 self.playPauseBtn = button;
                 break;
@@ -129,14 +139,15 @@
 
 /// 播放暂停
 - (void)playPauseBtnClicked:(UIButton *)sender {
-    if ([self.playerCenter isPlaying]) {
+    MusicPlayerCenter *center = [MusicPlayerCenter defaultCenter];
+    
+    if ([center isPlaying]) {
         [self.playPauseBtn setImage:[UIImage systemImageNamed:@"play.fill" configurationWithFontOfSize:40] forState:UIControlStateNormal];
-        [self.playerCenter.player pause];
     } else {
         [self.playPauseBtn setImage:[UIImage systemImageNamed:@"pause.fill" configurationWithFontOfSize:40] forState:UIControlStateNormal];
-        [self.playerCenter.player play];
     }
-    self.playerCenter.playing = !self.playerCenter.playing;
+    center.playing = !center.playing;
+    [center togglePlayPause];
 }
 
 /// 点击下一首
@@ -147,21 +158,22 @@
 /// 点击收藏
 - (void)likeBtnClicked:(UIButton *)sender {
     NSString *imageName = [NSString string];
-    if ([self.playerCenter.music isFavorite]) {
+    MusicPlayerCenter *center = [MusicPlayerCenter defaultCenter];
+    if ([center.music isFavorite]) {
         imageName = @"heart";
     } else {
         imageName = @"heart.fill";
     }
     [self.likeBtn setImage:[UIImage systemImageNamed:imageName configurationWithFontOfSize:40] forState:UIControlStateNormal];
-    self.playerCenter.music.favorite = !self.playerCenter.music.favorite;
+    center.music.favorite = !center.music.favorite;
 }
 
 /// 切换播放模式
 - (void)playModeBtnClicked:(UIButton *)sender {
-    self.playerCenter.playMode += 1;
+    [MusicPlayerCenter defaultCenter].playMode += 1;
     
     NSString *imageName = [NSString string];
-    switch (_playerCenter.playMode) {
+    switch ([MusicPlayerCenter defaultCenter].playMode) {
         case 0:
             imageName = @"repeat";
             break;
@@ -177,12 +189,10 @@
     [self.playModeBtn setImage:[UIImage systemImageNamed:imageName configurationWithFontOfSize:40] forState:UIControlStateNormal];
 }
 
-
-#pragma mark - lazy
-- (MusicPlayerCenter *)playerCenter {
-    if (!_playerCenter) {
-        _playerCenter = [MusicPlayerCenter defaultCenter];
-    }
-    return _playerCenter;
+/// 更改音量
+- (void)changeVolume {
+    [MusicPlayerCenter defaultCenter].player.volume = self.volumeSlider.value;
 }
+
+
 @end
