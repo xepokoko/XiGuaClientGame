@@ -20,6 +20,10 @@
 		9B5954A1280A7D1A00A3022E /* musicList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B59549A280A7D1A00A3022E /* musicList.plist */; };
 		9B5954A2280A7D1A00A3022E /* 富士山下.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9B59549B280A7D1A00A3022E /* 富士山下.mp3 */; };
 		9B5954A3280A7D1A00A3022E /* 慢慢喜欢你.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9B59549C280A7D1A00A3022E /* 慢慢喜欢你.mp3 */; };
+		9B5954A7280A7FC100A3022E /* PlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5954A6280A7FC100A3022E /* PlayViewController.m */; };
+		9B5954AA280A7FE000A3022E /* MusicPlayerCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5954A9280A7FE000A3022E /* MusicPlayerCenter.m */; };
+		9B5954AE280A87E600A3022E /* UIImage+SFFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5954AD280A87E600A3022E /* UIImage+SFFont.m */; };
+		9B5954B9280AAC2100A3022E /* MusicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5954B8280AAC2100A3022E /* MusicModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +45,15 @@
 		9B59549A280A7D1A00A3022E /* musicList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = musicList.plist; sourceTree = "<group>"; };
 		9B59549B280A7D1A00A3022E /* 富士山下.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "富士山下.mp3"; sourceTree = "<group>"; };
 		9B59549C280A7D1A00A3022E /* 慢慢喜欢你.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "慢慢喜欢你.mp3"; sourceTree = "<group>"; };
+		9B5954A5280A7FC100A3022E /* PlayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayViewController.h; sourceTree = "<group>"; };
+		9B5954A6280A7FC100A3022E /* PlayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayViewController.m; sourceTree = "<group>"; };
+		9B5954A8280A7FE000A3022E /* MusicPlayerCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicPlayerCenter.h; sourceTree = "<group>"; };
+		9B5954A9280A7FE000A3022E /* MusicPlayerCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicPlayerCenter.m; sourceTree = "<group>"; };
+		9B5954AC280A87E600A3022E /* UIImage+SFFont.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+SFFont.h"; sourceTree = "<group>"; };
+		9B5954AD280A87E600A3022E /* UIImage+SFFont.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SFFont.m"; sourceTree = "<group>"; };
+		9B5954B6280A9C5600A3022E /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		9B5954B7280AAC2100A3022E /* MusicModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicModel.h; sourceTree = "<group>"; };
+		9B5954B8280AAC2100A3022E /* MusicModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +86,8 @@
 		9B595472280A7AF100A3022E /* XiGuaMusicPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				9B5954B6280A9C5600A3022E /* Common.h */,
+				9B5954AB280A878500A3022E /* Category */,
 				9B595495280A7D1A00A3022E /* MusicsAndPlist */,
 				9B595494280A7BDC00A3022E /* View */,
 				9B595490280A7B5200A3022E /* PlayerCenter */,
@@ -88,6 +103,7 @@
 		9B59548C280A7B3200A3022E /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				9B5954A4280A7FA800A3022E /* PlayViewController */,
 				9B595491280A7B9900A3022E /* ViewController.h */,
 				9B595492280A7B9900A3022E /* ViewController.m */,
 			);
@@ -111,6 +127,8 @@
 		9B59548F280A7B4B00A3022E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9B5954B7280AAC2100A3022E /* MusicModel.h */,
+				9B5954B8280AAC2100A3022E /* MusicModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -118,6 +136,8 @@
 		9B595490280A7B5200A3022E /* PlayerCenter */ = {
 			isa = PBXGroup;
 			children = (
+				9B5954A8280A7FE000A3022E /* MusicPlayerCenter.h */,
+				9B5954A9280A7FE000A3022E /* MusicPlayerCenter.m */,
 			);
 			path = PlayerCenter;
 			sourceTree = "<group>";
@@ -140,6 +160,24 @@
 				9B59549A280A7D1A00A3022E /* musicList.plist */,
 			);
 			path = MusicsAndPlist;
+			sourceTree = "<group>";
+		};
+		9B5954A4280A7FA800A3022E /* PlayViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9B5954A5280A7FC100A3022E /* PlayViewController.h */,
+				9B5954A6280A7FC100A3022E /* PlayViewController.m */,
+			);
+			path = PlayViewController;
+			sourceTree = "<group>";
+		};
+		9B5954AB280A878500A3022E /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				9B5954AC280A87E600A3022E /* UIImage+SFFont.h */,
+				9B5954AD280A87E600A3022E /* UIImage+SFFont.m */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,8 +257,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B595475280A7AF100A3022E /* AppDelegate.m in Sources */,
+				9B5954B9280AAC2100A3022E /* MusicModel.m in Sources */,
+				9B5954AA280A7FE000A3022E /* MusicPlayerCenter.m in Sources */,
 				9B595486280A7AF200A3022E /* main.m in Sources */,
 				9B595493280A7B9900A3022E /* ViewController.m in Sources */,
+				9B5954A7280A7FC100A3022E /* PlayViewController.m in Sources */,
+				9B5954AE280A87E600A3022E /* UIImage+SFFont.m in Sources */,
 				9B595478280A7AF100A3022E /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -372,6 +414,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -399,6 +442,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
