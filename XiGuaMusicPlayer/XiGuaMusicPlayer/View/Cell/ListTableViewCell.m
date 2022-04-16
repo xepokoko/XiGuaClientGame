@@ -55,6 +55,7 @@
 - (void)setInfo {
     
     _titleLabel.text = _musicModel.songName;
+    _titleLabel.accessibilityLabel = _titleLabel.text;//无障碍设置
     _authorLabel.text = _musicModel.singerName;
     
 }

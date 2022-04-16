@@ -50,7 +50,7 @@
     //测试产品
     CGFloat tabHeight = tabBarController.tabBar.frame.size.height;
     CGFloat naviHeight = navi_1.navigationBar.frame.size.height;
-    UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(0,ScreenHeight-tabHeight-naviHeight, ScreenWidth, 50)];
+    UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(0,ScreenHeight-tabHeight-50, ScreenWidth, 50)];
     view1.backgroundColor = [UIColor redColor];
     [tabBarController.view addSubview:view1];
     [tabBarController.view bringSubviewToFront:view1];

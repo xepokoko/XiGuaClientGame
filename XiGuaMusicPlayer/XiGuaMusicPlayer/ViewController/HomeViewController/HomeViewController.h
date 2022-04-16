@@ -7,6 +7,9 @@
 
 #import "ListTableViewCell.h"
 #import "PlayViewController.h"
+#import "FavoriteViewController.h"
+#import "DailyRecmViewController.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HomeViewController : UIViewController
