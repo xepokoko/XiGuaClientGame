@@ -20,6 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 //播放器
 @property (nonatomic, retain)AVAudioPlayer *player;
 
+///  播放状态（播放/暂停）
+@property (nonatomic, assign, getter=isPlaying)BOOL playing;
+
 //播放时间计时器
 @property (assign, nonatomic)NSTimer *progressTimer;
 

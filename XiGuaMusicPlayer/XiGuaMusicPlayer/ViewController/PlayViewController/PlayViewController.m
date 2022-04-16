@@ -8,9 +8,13 @@
 #import "PlayViewController.h"
 #import "Common.h"
 #import "UIImage+SFFont.h"
+#import "MusicPlayerCenter.h"
 
 
 @interface PlayViewController ()
+
+/// 播放中心
+@property (nonatomic, weak)MusicPlayerCenter *playerCenter;
 
 /// 进度条
 @property (nonatomic, weak)UISlider *processSlider;
@@ -83,14 +87,17 @@
         switch (i) {
             case 0:
                 [button setImage:[UIImage systemImageNamed:@"backward.fill" configurationWithFontOfSize:40] forState:UIControlStateNormal];
+                [button addTarget:self action:@selector(backwardBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
                 self.backwardBtn = button;
                 break;
             case 1:
                 [button setImage:[UIImage systemImageNamed:@"play.fill" configurationWithFontOfSize:40] forState:UIControlStateNormal];
+                [button addTarget:self action:@selector(playPauseBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
                 self.playPauseBtn = button;
                 break;
             case 2:
                 [button setImage:[UIImage systemImageNamed:@"forward.fill"configurationWithFontOfSize:40] forState:UIControlStateNormal];
+                [button addTarget:self action:@selector(forwardBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
                 break;
             default:
                 break;
@@ -99,4 +106,18 @@
     }
 }
 
+#pragma mark 按钮点击事件
+- (void)backwardBtnClicked:(UIButton *)sender {
+    
+}
+
+- (void)playPauseBtnClicked:(UIButton *)sender {
+//    if ([self isPlaying]) {
+//        <#statements#>
+//    }
+}
+
+- (void)forwardBtnClicked:(UIButton *)sender {
+    
+}
 @end
