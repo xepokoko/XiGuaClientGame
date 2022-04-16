@@ -6,7 +6,7 @@
 //
 
 #import "ListTableViewCell.h"
-
+#import "PlayViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HomeViewController : UIViewController
@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIButton *dailyRecmdBtn;
 
 @property (nonatomic, strong) UIButton *favoriteBtn;
+
+@property (nonatomic, strong) NSMutableArray *musicList;
 
 @end
 
