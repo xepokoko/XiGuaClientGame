@@ -24,6 +24,8 @@
 		9B5954AA280A7FE000A3022E /* MusicPlayerCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5954A9280A7FE000A3022E /* MusicPlayerCenter.m */; };
 		9B5954AE280A87E600A3022E /* UIImage+SFFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5954AD280A87E600A3022E /* UIImage+SFFont.m */; };
 		9B5954B9280AAC2100A3022E /* MusicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5954B8280AAC2100A3022E /* MusicModel.m */; };
+		A6D03DEB280AB5F500D2CAC3 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D03DEA280AB5F500D2CAC3 /* HomeViewController.m */; };
+		A6D03DEF280AB66200D2CAC3 /* ListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D03DEE280AB66200D2CAC3 /* ListTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,10 @@
 		9B5954B6280A9C5600A3022E /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		9B5954B7280AAC2100A3022E /* MusicModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicModel.h; sourceTree = "<group>"; };
 		9B5954B8280AAC2100A3022E /* MusicModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicModel.m; sourceTree = "<group>"; };
+		A6D03DE9280AB5F500D2CAC3 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		A6D03DEA280AB5F500D2CAC3 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		A6D03DED280AB66200D2CAC3 /* ListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListTableViewCell.h; sourceTree = "<group>"; };
+		A6D03DEE280AB66200D2CAC3 /* ListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +109,7 @@
 		9B59548C280A7B3200A3022E /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				A6D03DE8280AB5D300D2CAC3 /* HomeViewController */,
 				9B5954A4280A7FA800A3022E /* PlayViewController */,
 				9B595491280A7B9900A3022E /* ViewController.h */,
 				9B595492280A7B9900A3022E /* ViewController.m */,
@@ -145,6 +152,7 @@
 		9B595494280A7BDC00A3022E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A6D03DEC280AB64300D2CAC3 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -178,6 +186,24 @@
 				9B5954AD280A87E600A3022E /* UIImage+SFFont.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		A6D03DE8280AB5D300D2CAC3 /* HomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A6D03DE9280AB5F500D2CAC3 /* HomeViewController.h */,
+				A6D03DEA280AB5F500D2CAC3 /* HomeViewController.m */,
+			);
+			path = HomeViewController;
+			sourceTree = "<group>";
+		};
+		A6D03DEC280AB64300D2CAC3 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A6D03DED280AB66200D2CAC3 /* ListTableViewCell.h */,
+				A6D03DEE280AB66200D2CAC3 /* ListTableViewCell.m */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,9 +287,11 @@
 				9B5954AA280A7FE000A3022E /* MusicPlayerCenter.m in Sources */,
 				9B595486280A7AF200A3022E /* main.m in Sources */,
 				9B595493280A7B9900A3022E /* ViewController.m in Sources */,
+				A6D03DEB280AB5F500D2CAC3 /* HomeViewController.m in Sources */,
 				9B5954A7280A7FC100A3022E /* PlayViewController.m in Sources */,
 				9B5954AE280A87E600A3022E /* UIImage+SFFont.m in Sources */,
 				9B595478280A7AF100A3022E /* SceneDelegate.m in Sources */,
+				A6D03DEF280AB66200D2CAC3 /* ListTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,7 +368,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -393,7 +421,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

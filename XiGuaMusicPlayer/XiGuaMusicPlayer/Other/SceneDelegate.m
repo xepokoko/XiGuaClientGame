@@ -8,6 +8,11 @@
 #import "SceneDelegate.h"
 #import "PlayViewController.h"
 #import "UIImage+SFFont.h"
+#import "HomeViewController.h"
+
+#define ScreenHeight [UIScreen mainScreen].bounds.size.height
+#define ScreenWidth [UIScreen mainScreen].bounds.size.width
+
 
 @interface SceneDelegate ()
 
@@ -22,20 +27,32 @@
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     
-    UIViewController *controller1 = [[UIViewController alloc] init];
+    HomeViewController *controller1 = [[HomeViewController alloc] init];
     controller1.view.backgroundColor = [UIColor whiteColor];
-    controller1.title = @"歌单";
+    controller1.title = @"主页";
     controller1.tabBarItem.image = [UIImage systemImageNamed:@"list.dash"];
-    [tabBarController addChildViewController:controller1];
+    
+    UINavigationController *navi_1 = [[UINavigationController alloc]initWithRootViewController:controller1];
+    [tabBarController addChildViewController:navi_1];
     
     PlayViewController *controller2 = [[PlayViewController alloc] init];
     controller2.view.backgroundColor = [UIColor whiteColor];
-    controller2.title = @"播放界面";
+    controller2.title = @"我的";
+    UINavigationController *navi_2 = [[UINavigationController alloc]initWithRootViewController:controller2];
 
-    [tabBarController addChildViewController:controller2];
+    [tabBarController addChildViewController:navi_2];
     
     self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];
+    
+ 
+    //测试产品
+    CGFloat tabHeight = tabBarController.tabBar.frame.size.height;
+    CGFloat naviHeight = navi_1.navigationBar.frame.size.height;
+    UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(0,ScreenHeight-tabHeight-naviHeight, ScreenWidth, 50)];
+    view1.backgroundColor = [UIColor redColor];
+    [tabBarController.view addSubview:view1];
+    [tabBarController.view bringSubviewToFront:view1];
 }
 
 
