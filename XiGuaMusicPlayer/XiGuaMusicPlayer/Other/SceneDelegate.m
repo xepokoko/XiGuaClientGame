@@ -27,17 +27,18 @@
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     
-    HomeViewController *controller1 = [[HomeViewController alloc] init];
-    controller1.view.backgroundColor = [UIColor whiteColor];
-    controller1.title = @"主页";
-    controller1.tabBarItem.image = [UIImage systemImageNamed:@"list.dash"];
+    HomeViewController *homeViewController = [[HomeViewController alloc] init];
+    homeViewController.view.backgroundColor = [UIColor whiteColor];
+    homeViewController.title = @"歌单";
+    homeViewController.tabBarItem.image = [UIImage systemImageNamed:@"list.dash"];
     
-    UINavigationController *navi_1 = [[UINavigationController alloc]initWithRootViewController:controller1];
+    UINavigationController *navi_1 = [[UINavigationController alloc]initWithRootViewController:homeViewController];
     [tabBarController addChildViewController:navi_1];
     
-    PlayViewController *controller2 = [[PlayViewController alloc] init];
+    UIViewController *controller2 = [[UIViewController alloc] init];
     controller2.view.backgroundColor = [UIColor whiteColor];
     controller2.title = @"我的";
+    controller2.tabBarItem.image = [UIImage systemImageNamed:@"person.fill"];
     UINavigationController *navi_2 = [[UINavigationController alloc]initWithRootViewController:controller2];
 
     [tabBarController addChildViewController:navi_2];

@@ -43,6 +43,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor whiteColor];
     [self layoutSubviews];
 }
 
@@ -91,6 +92,7 @@
                 [button setImage:[UIImage systemImageNamed:@"heart" configurationWithFontOfSize:40] forState:UIControlStateNormal];
                 button.tintColor = [UIColor systemRedColor];
                 [button addTarget:self action:@selector(likeBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+                self.likeBtn = button;
                 break;
             case 1:
                 [button setImage:[UIImage systemImageNamed:@"backward.fill" configurationWithFontOfSize:40] forState:UIControlStateNormal];
@@ -105,10 +107,12 @@
             case 3:
                 [button setImage:[UIImage systemImageNamed:@"forward.fill"configurationWithFontOfSize:40] forState:UIControlStateNormal];
                 [button addTarget:self action:@selector(forwardBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+                self.forwardBtn = button;
                 break;
             case 4:
                 [button setImage:[UIImage systemImageNamed:@"repeat" configurationWithFontOfSize:40] forState:UIControlStateNormal];
                 [button addTarget:self action:@selector(playModeBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+                self.playModeBtn = button;
                 break;
             default:
                 break;
@@ -141,12 +145,27 @@
 
 /// 点击收藏
 - (void)likeBtnClicked:(UIButton *)sender {
-    
 }
 
 /// 切换播放模式
 - (void)playModeBtnClicked:(UIButton *)sender {
+    self.playerCenter.playMode += 1;
     
+    NSString *imageName = [NSString string];
+    switch (_playerCenter.playMode) {
+        case 0:
+            imageName = @"repeat";
+            break;
+        case 1:
+            imageName = @"repeat.1";
+            break;
+        case 2:
+            imageName = @"shuffle";
+            break;
+        default:
+            break;
+    }
+    [self.playModeBtn setImage:[UIImage systemImageNamed:imageName configurationWithFontOfSize:40] forState:UIControlStateNormal];
 }
 
 

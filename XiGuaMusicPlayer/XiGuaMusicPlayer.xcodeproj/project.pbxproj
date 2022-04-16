@@ -13,7 +13,6 @@
 		9B595480280A7AF200A3022E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B59547F280A7AF200A3022E /* Assets.xcassets */; };
 		9B595483280A7AF200A3022E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B595481280A7AF200A3022E /* LaunchScreen.storyboard */; };
 		9B595486280A7AF200A3022E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B595485280A7AF200A3022E /* main.m */; };
-		9B595493280A7B9900A3022E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B595492280A7B9900A3022E /* ViewController.m */; };
 		9B59549E280A7D1A00A3022E /* 陀飞轮.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9B595497280A7D1A00A3022E /* 陀飞轮.mp3 */; };
 		9B59549F280A7D1A00A3022E /* 今天只做一件事.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9B595498280A7D1A00A3022E /* 今天只做一件事.mp3 */; };
 		9B5954A0280A7D1A00A3022E /* 十面埋伏.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9B595499280A7D1A00A3022E /* 十面埋伏.mp3 */; };
@@ -39,8 +38,6 @@
 		9B595482280A7AF200A3022E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B595484280A7AF200A3022E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B595485280A7AF200A3022E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9B595491280A7B9900A3022E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		9B595492280A7B9900A3022E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		9B595497280A7D1A00A3022E /* 陀飞轮.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "陀飞轮.mp3"; sourceTree = "<group>"; };
 		9B595498280A7D1A00A3022E /* 今天只做一件事.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "今天只做一件事.mp3"; sourceTree = "<group>"; };
 		9B595499280A7D1A00A3022E /* 十面埋伏.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "十面埋伏.mp3"; sourceTree = "<group>"; };
@@ -111,8 +108,6 @@
 			children = (
 				A6D03DE8280AB5D300D2CAC3 /* HomeViewController */,
 				9B5954A4280A7FA800A3022E /* PlayViewController */,
-				9B595491280A7B9900A3022E /* ViewController.h */,
-				9B595492280A7B9900A3022E /* ViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -286,7 +281,6 @@
 				9B5954B9280AAC2100A3022E /* MusicModel.m in Sources */,
 				9B5954AA280A7FE000A3022E /* MusicPlayerCenter.m in Sources */,
 				9B595486280A7AF200A3022E /* main.m in Sources */,
-				9B595493280A7B9900A3022E /* ViewController.m in Sources */,
 				A6D03DEB280AB5F500D2CAC3 /* HomeViewController.m in Sources */,
 				9B5954A7280A7FC100A3022E /* PlayViewController.m in Sources */,
 				9B5954AE280A87E600A3022E /* UIImage+SFFont.m in Sources */,

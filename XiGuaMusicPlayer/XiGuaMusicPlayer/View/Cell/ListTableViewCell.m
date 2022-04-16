@@ -51,10 +51,11 @@
     return self;
 }
 
-
+//设置cell的数据用的
 - (void)setInfo {
     
-    
+    _titleLabel.text = _musicModel.songName;
+    _authorLabel.text = _musicModel.singerName;
     
 }
 

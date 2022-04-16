@@ -6,6 +6,8 @@
 //
 
 #import "HomeViewController.h"
+#import "PlayViewController.h"
+#import "MusicModel.h"
 
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
@@ -39,6 +41,7 @@
     
     [self.view addSubview:self.dailyRecmdBtn];
     
+    NSLog(@"%@", self.musicList);
     
 }
 #pragma mark - 重写get
@@ -82,19 +85,50 @@
     return _listTabelView;
 }
 
+- (NSMutableArray *)musicList {
+    if (_musicList == nil) {
+        
+        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"musicList" ofType:@"plist"];
+        
+        
+        NSMutableArray *dictArray = [NSMutableArray arrayWithContentsOfFile:plistPath];
+        NSMutableArray *modelArray = [NSMutableArray array];
+        for (NSDictionary *dict in dictArray) {
+            MusicModel *model = [MusicModel musicModelWithDict:dict];
+            [modelArray addObject:model];
+        }
+        _musicList = modelArray;
+        
+        
+    }
+    
+    
+    return _musicList;
+}
+
 
 #pragma mark - Table Delegates
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 10;
+    return _musicList.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *reuseID = @"ListCell";
     
-    ListTableViewCell *cell = [[ListTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseID];
+    ListTableViewCell *cell = [self.listTabelView dequeueReusableCellWithIdentifier:reuseID];
+    if (cell == nil) {
+        cell = [[ListTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseID];
+    }
+    
+    cell.musicModel = _musicList[indexPath.row];
+    
+    [cell setInfo];
     
     return cell;
     
@@ -109,7 +143,8 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    PlayViewController *controller = [[PlayViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 

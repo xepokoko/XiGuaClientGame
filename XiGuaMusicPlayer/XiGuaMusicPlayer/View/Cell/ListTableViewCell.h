@@ -6,7 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MusicModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ListTableViewCell : UITableViewCell
@@ -19,6 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) UILabel *authorLabel;
 
+@property (nonatomic, strong) MusicModel *musicModel;
+
+
+- (void)setInfo;
 @end
 
 NS_ASSUME_NONNULL_END
