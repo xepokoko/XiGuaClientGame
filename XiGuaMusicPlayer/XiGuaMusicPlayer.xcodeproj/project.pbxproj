@@ -27,6 +27,7 @@
 		A6D03DEF280AB66200D2CAC3 /* ListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D03DEE280AB66200D2CAC3 /* ListTableViewCell.m */; };
 		A6D03DF2280AD01400D2CAC3 /* DailyRecmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D03DF1280AD01400D2CAC3 /* DailyRecmViewController.m */; };
 		A6D03DF5280AD03100D2CAC3 /* FavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D03DF4280AD03100D2CAC3 /* FavoriteViewController.m */; };
+		A6D03DF8280AEA8200D2CAC3 /* MusicPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D03DF7280AEA8200D2CAC3 /* MusicPlayerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,8 @@
 		A6D03DF1280AD01400D2CAC3 /* DailyRecmViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DailyRecmViewController.m; sourceTree = "<group>"; };
 		A6D03DF3280AD03100D2CAC3 /* FavoriteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteViewController.h; sourceTree = "<group>"; };
 		A6D03DF4280AD03100D2CAC3 /* FavoriteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoriteViewController.m; sourceTree = "<group>"; };
+		A6D03DF6280AEA8200D2CAC3 /* MusicPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicPlayerView.h; sourceTree = "<group>"; };
+		A6D03DF7280AEA8200D2CAC3 /* MusicPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicPlayerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +161,8 @@
 			isa = PBXGroup;
 			children = (
 				A6D03DEC280AB64300D2CAC3 /* Cell */,
+				A6D03DF6280AEA8200D2CAC3 /* MusicPlayerView.h */,
+				A6D03DF7280AEA8200D2CAC3 /* MusicPlayerView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -292,6 +297,7 @@
 				9B5954AA280A7FE000A3022E /* MusicPlayerCenter.m in Sources */,
 				9B595486280A7AF200A3022E /* main.m in Sources */,
 				A6D03DEB280AB5F500D2CAC3 /* HomeViewController.m in Sources */,
+				A6D03DF8280AEA8200D2CAC3 /* MusicPlayerView.m in Sources */,
 				9B5954A7280A7FC100A3022E /* PlayViewController.m in Sources */,
 				9B5954AE280A87E600A3022E /* UIImage+SFFont.m in Sources */,
 				A6D03DF2280AD01400D2CAC3 /* DailyRecmViewController.m in Sources */,

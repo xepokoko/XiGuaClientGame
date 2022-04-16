@@ -73,6 +73,12 @@
         _authorLabel.text = @"歌手名称";
         [self.contentView addSubview:_authorLabel];
         
+        self.indexLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREENWIDTH-30, 10, 30, 30)];
+        _indexLabel.font = [UIFont systemFontOfSize:14];
+        _indexLabel.textColor = [UIColor systemGrayColor];
+        _indexLabel.text = @"2";
+        [self.contentView addSubview:_indexLabel];
+        
         
         
         
@@ -86,7 +92,10 @@
     
     _titleLabel.text = _musicModel.songName;
     _titleLabel.accessibilityLabel = _titleLabel.text;//无障碍设置
+    
     _authorLabel.text = _musicModel.singerName;
+    
+    
     
 }
 

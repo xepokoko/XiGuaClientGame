@@ -21,9 +21,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     self.tabBarController.tabBar.hidden = YES;
-    UIView *view = [self.tabBarController.view.subviews lastObject];
-    [view setFrame:CGRectMake(0, ScreenHeight-50, ScreenWidth, 50)];
-    
     
     
 }
@@ -34,7 +31,7 @@
     
     CGFloat tabHeight = self.tabBarController.tabBar.frame.size.height;
 
-    [view setFrame:CGRectMake(0,ScreenHeight-tabHeight-50, ScreenWidth, 50)];
+    [view setFrame:CGRectMake(0,ScreenHeight-tabHeight-100, ScreenWidth, 100)];
 
     
 }

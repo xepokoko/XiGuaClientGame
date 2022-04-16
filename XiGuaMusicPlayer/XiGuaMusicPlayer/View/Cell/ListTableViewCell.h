@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ListTableViewCell : UITableViewCell
 
-//@property (nonatomic ,strong) UILabel *indexLabel;
+@property (nonatomic ,strong) UILabel *indexLabel;
 
 @property (nonatomic, strong) UIImageView *picImageView;
 
