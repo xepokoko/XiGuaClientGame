@@ -18,18 +18,19 @@
 
 /// 进度条
 @property (nonatomic, weak)UISlider *processSlider;
-
 /// 音量条
 @property (nonatomic, weak)UISlider *volumeSlider;
 
+/// 收藏按钮
+@property (nonatomic,weak)UIButton *likeBtn;
 /// 下一首歌按钮
 @property (nonatomic, weak)UIButton *forwardBtn;
-
 /// 上一首歌按钮
 @property (nonatomic, weak)UIButton *backwardBtn;
-
 /// 播放暂停按钮
 @property (nonatomic, weak)UIButton *playPauseBtn;
+/// 播放模式 （随机/顺序/单曲循环）
+@property  (nonatomic, weak)UIButton *playModeBtn;
 
 @end
 
@@ -73,11 +74,12 @@
     [self.view addSubview:volumeSlider];
     self.volumeSlider = volumeSlider;
     
+    int buttonCount = 5;
     CGFloat buttonX = CGRectGetMaxX(self.processSlider.frame);
     CGFloat buttonW = CGRectGetMinX(self.volumeSlider.frame) - CGRectGetMaxX(self.processSlider.frame);\
-    CGFloat buttonH = sliderH / 3;
+    CGFloat buttonH = sliderH / buttonCount;
     CGFloat buttonY = CGRectGetMinY(self.processSlider.frame);
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < buttonCount; i++) {
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(buttonX,
                                                                       buttonY,
                                                                       buttonW,
@@ -86,18 +88,27 @@
         [self.view addSubview:button];
         switch (i) {
             case 0:
+                [button setImage:[UIImage systemImageNamed:@"heart" configurationWithFontOfSize:40] forState:UIControlStateNormal];
+                button.tintColor = [UIColor systemRedColor];
+                [button addTarget:self action:@selector(likeBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+                break;
+            case 1:
                 [button setImage:[UIImage systemImageNamed:@"backward.fill" configurationWithFontOfSize:40] forState:UIControlStateNormal];
                 [button addTarget:self action:@selector(backwardBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
                 self.backwardBtn = button;
                 break;
-            case 1:
+            case 2:
                 [button setImage:[UIImage systemImageNamed:@"play.fill" configurationWithFontOfSize:40] forState:UIControlStateNormal];
                 [button addTarget:self action:@selector(playPauseBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
                 self.playPauseBtn = button;
                 break;
-            case 2:
+            case 3:
                 [button setImage:[UIImage systemImageNamed:@"forward.fill"configurationWithFontOfSize:40] forState:UIControlStateNormal];
                 [button addTarget:self action:@selector(forwardBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+                break;
+            case 4:
+                [button setImage:[UIImage systemImageNamed:@"repeat" configurationWithFontOfSize:40] forState:UIControlStateNormal];
+                [button addTarget:self action:@selector(playModeBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
                 break;
             default:
                 break;
@@ -106,18 +117,44 @@
     }
 }
 
-#pragma mark 按钮点击事件
+#pragma mark - 按钮点击事件
+/// 点击上一首
 - (void)backwardBtnClicked:(UIButton *)sender {
     
 }
 
+/// 播放暂停
 - (void)playPauseBtnClicked:(UIButton *)sender {
-//    if ([self isPlaying]) {
-//        <#statements#>
-//    }
+    if ([self.playerCenter isPlaying]) {
+        [self.playPauseBtn setImage:[UIImage systemImageNamed:@"play.fill" configurationWithFontOfSize:40] forState:UIControlStateNormal];
+        
+    } else {
+        [self.playPauseBtn setImage:[UIImage systemImageNamed:@"pause.fill" configurationWithFontOfSize:40] forState:UIControlStateNormal];
+    }
+    self.playerCenter.playing = !self.playerCenter.playing;
 }
 
+/// 点击下一首
 - (void)forwardBtnClicked:(UIButton *)sender {
     
+}
+
+/// 点击收藏
+- (void)likeBtnClicked:(UIButton *)sender {
+    
+}
+
+/// 切换播放模式
+- (void)playModeBtnClicked:(UIButton *)sender {
+    
+}
+
+
+#pragma mark - lazy
+- (MusicPlayerCenter *)playerCenter {
+    if (!_playerCenter) {
+        _playerCenter = [MusicPlayerCenter defaultCenter];
+    }
+    return _playerCenter;
 }
 @end
