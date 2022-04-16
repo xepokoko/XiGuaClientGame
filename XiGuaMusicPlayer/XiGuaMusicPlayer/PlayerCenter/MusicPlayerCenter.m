@@ -77,7 +77,7 @@ static MusicPlayerCenter *playerCenter;
         [self.delegate playNextMusicWithPlayMode:self.playMode];
     }
     [self playMusic];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateLikeBtnNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"playAnotherMusicNotification" object:nil];
 }
 
 /// 播放上一首歌
@@ -91,7 +91,7 @@ static MusicPlayerCenter *playerCenter;
         [self.delegate playLastMusicWithPlayMode:self.playMode];
     }
     [self playMusic];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateLikeBtnNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"playAnotherMusic" object:nil];
 }
 
 /// 播放完毕，player 的代理

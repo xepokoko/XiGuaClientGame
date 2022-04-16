@@ -41,7 +41,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateProcessSlider) name:@"updateProgressNotification" object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLikeBtn) name:@"updateLikeBtnNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playAnotherMusic) name:@"playAnotherMusicNotification" object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -196,7 +196,14 @@
 }
 
 
-/// 切换歌曲时更新 likeBtn
+/// 切换歌曲时更新
+- (void)playAnotherMusic {
+    [self updateLikeBtn];
+    // 更新title
+    self.title = [MusicPlayerCenter defaultCenter].music.songName;
+}
+
+/// 更新喜欢按钮
 - (void)updateLikeBtn {
     if ([[MusicPlayerCenter defaultCenter].music isFavorite]) {
         [self.likeBtn setImage:[UIImage systemImageNamed:@"heart.fill" configurationWithFontOfSize:40] forState:UIControlStateNormal];
