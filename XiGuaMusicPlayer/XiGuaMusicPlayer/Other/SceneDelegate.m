@@ -9,6 +9,7 @@
 #import "PlayViewController.h"
 #import "UIImage+SFFont.h"
 #import "HomeViewController.h"
+#import "MusicPlayerView.h"
 
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
@@ -47,10 +48,10 @@
     [self.window makeKeyAndVisible];
     
  
-    //测试产品
+    //一直处于下方的播放控制view
     CGFloat tabHeight = tabBarController.tabBar.frame.size.height;
     CGFloat naviHeight = navi_1.navigationBar.frame.size.height;
-    UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(0,ScreenHeight-tabHeight-50, ScreenWidth, 50)];
+    MusicPlayerView *view1 = [[MusicPlayerView alloc]initWithFrame:CGRectMake(0, ScreenHeight-tabHeight-100, ScreenWidth, 100)];
     view1.backgroundColor = [UIColor redColor];
     [tabBarController.view addSubview:view1];
     [tabBarController.view bringSubviewToFront:view1];

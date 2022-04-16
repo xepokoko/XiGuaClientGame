@@ -20,8 +20,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     self.tabBarController.tabBar.hidden = YES;
-    UIView *view = [self.tabBarController.view.subviews lastObject];
-    [view setFrame:CGRectMake(0, ScreenHeight-70, ScreenWidth, 50)];
     
     
     
@@ -29,11 +27,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     self.tabBarController.tabBar.hidden = NO;
-    UIView *view = [self.tabBarController.view.subviews lastObject];
-    
-    CGFloat tabHeight = self.tabBarController.tabBar.frame.size.height;
-
-    [view setFrame:CGRectMake(0,ScreenHeight-tabHeight-50, ScreenWidth, 50)];
+   
 
     
 }
@@ -48,7 +42,7 @@
 
 - (UITableView *)tableView {
     if (_tableView == nil) {
-        CGFloat naviHeight = 91; //直接在图层获取的。
+        CGFloat naviHeight = 91; //直接在图层获取的数据。
       
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, naviHeight, ScreenWidth, ScreenHeight-naviHeight)];
         

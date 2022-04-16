@@ -169,6 +169,8 @@
     recm.musicList = dailyMusicList;
     [self.navigationController pushViewController:recm animated:YES];
     
+ 
+    
     
 }
 
