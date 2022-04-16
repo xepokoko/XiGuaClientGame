@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>coverImg</key>
+		<string>陀飞轮</string>
+		<key>favorite</key>
+		<integer>1</integer>
+		<key>singerName</key>
+		<string>陈奕迅</string>
+		<key>songName</key>
+		<string>陀飞轮</string>
+	</dict>
+	<dict>
+		<key>coverImg</key>
+		<string>十面埋伏</string>
+		<key>favorite</key>
+		<integer>1</integer>
+		<key>singerName</key>
+		<string>陈奕迅</string>
+		<key>songName</key>
+		<string>十面埋伏</string>
+	</dict>
+	<dict>
+		<key>coverImg</key>
+		<string>富士山下</string>
+		<key>favorite</key>
+		<integer>1</integer>
+		<key>singerName</key>
+		<string>陈奕迅</string>
+		<key>songName</key>
+		<string>富士山下</string>
+	</dict>
+	<dict>
+		<key>coverImg</key>
+		<string>今天只做一件事</string>
+		<key>favorite</key>
+		<integer>0</integer>
+		<key>singerName</key>
+		<string>陈奕迅</string>
+		<key>songName</key>
+		<string>今天只做一件事</string>
+	</dict>
+	<dict>
+		<key>coverImg</key>
+		<string>慢慢喜欢你</string>
+		<key>favorite</key>
+		<integer>1</integer>
+		<key>singerName</key>
+		<string>莫文蔚</string>
+		<key>songName</key>
+		<string>慢慢喜欢你</string>
+	</dict>
+</array>
+</plist>

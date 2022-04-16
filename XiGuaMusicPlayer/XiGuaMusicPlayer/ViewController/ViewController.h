@@ -1,0 +1,16 @@
+//
+//  ViewController.h
+//  XiGuaMusicPlayer
+//
+//  Created by little_Fking_cute on 2022/4/16.
+//
+
+#import <UIKit/UIKit.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface ViewController : UIViewController
+
+@end
+
+NS_ASSUME_NONNULL_END
