@@ -55,17 +55,25 @@
     return self;
 }
 #pragma mark - 按钮点击响应方法
+//上一首
 - (void)touchUpInsidLastSongBtn: (UIButton *)button {
+    
+    [[MusicPlayerCenter defaultCenter] playLastMusic];
     
 }
 
 - (void)touchUpInsidNextSongBtn: (UIButton *)button {
     
+    [[MusicPlayerCenter defaultCenter] playNextMusic];
     
 }
 - (void)touchUpInsidPlayBtn: (UIButton *)button {
     
     MusicPlayerCenter *playerCenter = [MusicPlayerCenter defaultCenter];
+    
+    if (playerCenter.music == nil) {
+        playerCenter.music = self.music;
+    }
     
     if ([playerCenter isPlaying]) {
         [button setImage:[UIImage systemImageNamed:@"play.fill" configurationWithFontOfSize:50] forState:UIControlStateNormal];
@@ -73,7 +81,10 @@
     } else {
         [button setImage:[UIImage systemImageNamed:@"pause.fill" configurationWithFontOfSize:50] forState:UIControlStateNormal];
     }
+    [playerCenter togglePlayPause];
+    
     playerCenter.playing = !playerCenter.playing;
+    
     
     
 }

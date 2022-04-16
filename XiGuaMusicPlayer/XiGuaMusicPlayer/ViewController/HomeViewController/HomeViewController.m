@@ -9,6 +9,7 @@
 #import "PlayViewController.h"
 #import "MusicPlayerCenter.h"
 #import "MusicModel.h"
+#import "MusicPlayerView.h"
 
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
@@ -46,7 +47,10 @@
     
     [self.view addSubview:self.dailyRecmdBtn];
     
-    NSLog(@"%@", self.musicList);
+    
+    MusicPlayerView *playerView = [self.tabBarController.tabBar.subviews lastObject];
+    NSInteger randomNumber = arc4random() % 4;
+    playerView.music = self.musicList[randomNumber];
     
 }
 #pragma mark - 重写get

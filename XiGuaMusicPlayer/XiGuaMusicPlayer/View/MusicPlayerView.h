@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "UIImage+SFFont.h"
 #import "MusicPlayerCenter.h"
+#import "MusicModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIButton *nextSongBtn;
 
 @property (nonatomic, strong) UIButton *playBtn;
+
+@property (nonatomic, strong) MusicModel *music;
 
 @end
 
