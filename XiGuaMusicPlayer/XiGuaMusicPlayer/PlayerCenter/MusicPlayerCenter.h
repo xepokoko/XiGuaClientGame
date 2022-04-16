@@ -14,10 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 单例模式，负责管理整个 app 的音乐播放
 @interface MusicPlayerCenter : NSObject
 
-//模型
-@property (nonatomic, strong)MusicModel *model;
+/// 模型
+@property (nonatomic, strong)MusicModel *music;
 
-//播放器
+/// 播放器
 @property (nonatomic, retain)AVAudioPlayer *player;
 
 /// 播放状态（播放/暂停）

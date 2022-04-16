@@ -47,7 +47,7 @@
     if (_dailyRecmdBtn == nil) {
         
         _dailyRecmdBtn = [[UIButton alloc]initWithFrame:CGRectMake(44, 95, 112, 90)];
-        [_dailyRecmdBtn setBackgroundColor:[UIColor greenColor]];
+        [_dailyRecmdBtn setBackgroundColor:[UIColor systemGreenColor]];
         [_dailyRecmdBtn setTitle:@"每日推荐" forState:UIControlStateNormal];
         [_dailyRecmdBtn addTarget:self action:@selector(touchUpInsideDailyRecmdBtn:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -58,7 +58,7 @@
 - (UIButton *)favoriteBtn {
     if (_favoriteBtn == nil) {
         _favoriteBtn = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth - 44-112, 95, 112, 90)];
-        [_favoriteBtn setBackgroundColor:[UIColor yellowColor]];
+        [_favoriteBtn setBackgroundColor:[UIColor systemYellowColor]];
         [_favoriteBtn setTitle:@"收藏列表" forState:UIControlStateNormal];
         [_favoriteBtn addTarget:self action:@selector(touchUpInsideFavorateBtn:) forControlEvents:UIControlEventTouchUpInside];
     }

@@ -131,9 +131,10 @@
 - (void)playPauseBtnClicked:(UIButton *)sender {
     if ([self.playerCenter isPlaying]) {
         [self.playPauseBtn setImage:[UIImage systemImageNamed:@"play.fill" configurationWithFontOfSize:40] forState:UIControlStateNormal];
-        
+        [self.playerCenter.player pause];
     } else {
         [self.playPauseBtn setImage:[UIImage systemImageNamed:@"pause.fill" configurationWithFontOfSize:40] forState:UIControlStateNormal];
+        [self.playerCenter.player play];
     }
     self.playerCenter.playing = !self.playerCenter.playing;
 }
@@ -145,6 +146,14 @@
 
 /// 点击收藏
 - (void)likeBtnClicked:(UIButton *)sender {
+    NSString *imageName = [NSString string];
+    if ([self.playerCenter.music isFavorite]) {
+        imageName = @"heart";
+    } else {
+        imageName = @"heart.fill";
+    }
+    [self.likeBtn setImage:[UIImage systemImageNamed:imageName configurationWithFontOfSize:40] forState:UIControlStateNormal];
+    self.playerCenter.music.favorite = !self.playerCenter.music.favorite;
 }
 
 /// 切换播放模式
