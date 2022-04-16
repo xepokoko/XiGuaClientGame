@@ -6,6 +6,7 @@
 //
 
 #import "HomeViewController.h"
+#import "PlayViewController.h"
 
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
@@ -109,7 +110,8 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    PlayViewController *controller = [[PlayViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 

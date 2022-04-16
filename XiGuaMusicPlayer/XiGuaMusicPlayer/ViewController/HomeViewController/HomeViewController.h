@@ -5,12 +5,11 @@
 //  Created by 谢恩平 on 2022/4/16.
 //
 
-#import "ViewController.h"
 #import "ListTableViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HomeViewController : ViewController
+@interface HomeViewController : UIViewController
 
 @property (nonatomic, strong) UITableView *listTabelView;
 

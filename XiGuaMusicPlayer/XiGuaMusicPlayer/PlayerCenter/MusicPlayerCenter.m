@@ -20,6 +20,14 @@ static MusicPlayerCenter *playerCenter;
     return _playing;
 }
 
+- (int)playMode {
+    if (!_playMode) {
+        _playMode = 0;
+    }
+    return _playMode % 3;
+}
+
+
 /// 单例
 + (instancetype)defaultCenter {
     if (playerCenter == nil) {
