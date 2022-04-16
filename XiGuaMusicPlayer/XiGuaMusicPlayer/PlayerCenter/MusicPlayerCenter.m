@@ -12,7 +12,15 @@ static MusicPlayerCenter *playerCenter;
 
 @implementation MusicPlayerCenter
 
-// 单例
+
+- (BOOL)isPlaying {
+    if (!_playing) {
+        _playing = NO;
+    }
+    return _playing;
+}
+
+/// 单例
 + (instancetype)defaultCenter {
     if (playerCenter == nil) {
         static dispatch_once_t onceToken;

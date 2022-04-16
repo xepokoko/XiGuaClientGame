@@ -106,18 +106,30 @@
     }
 }
 
-#pragma mark 按钮点击事件
+#pragma mark - 按钮点击事件
 - (void)backwardBtnClicked:(UIButton *)sender {
     
 }
 
 - (void)playPauseBtnClicked:(UIButton *)sender {
-//    if ([self isPlaying]) {
-//        <#statements#>
-//    }
+    if ([self.playerCenter isPlaying]) {
+        [self.playPauseBtn setImage:[UIImage systemImageNamed:@"play.fill" configurationWithFontOfSize:40] forState:UIControlStateNormal];
+        
+    } else {
+        [self.playPauseBtn setImage:[UIImage systemImageNamed:@"pause.fill" configurationWithFontOfSize:40] forState:UIControlStateNormal];
+    }
+    self.playerCenter.playing = !self.playerCenter.playing;
 }
 
 - (void)forwardBtnClicked:(UIButton *)sender {
     
+}
+
+#pragma mark - lazy
+- (MusicPlayerCenter *)playerCenter {
+    if (!_playerCenter) {
+        _playerCenter = [MusicPlayerCenter defaultCenter];
+    }
+    return _playerCenter;
 }
 @end
