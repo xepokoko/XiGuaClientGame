@@ -11,18 +11,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MusicModel : NSObject
 
-//歌曲名字
+/// 歌曲名字
 @property (nonatomic, strong)NSString *songName;
-//歌手名字
+
+/// 歌手名字
 @property (nonatomic, strong)NSString *singerName;
-//专辑封面
+
+/// 专辑封面
 @property (nonatomic, strong)NSString *coverImg;
-//是否收藏
-@property (assign, getter = isFavorite)Boolean favorite;
 
-- (instancetype) initWithDict:(NSDictionary *)dict;
+/// 是否收藏
+@property (nonatomic, assign, getter = isFavorite)BOOL favorite;
 
-+ (instancetype) musicModelWithDict:(NSDictionary *)dict;
+- (instancetype)initWithDict:(NSDictionary *)dict;
+
++ (instancetype)musicModelWithDict:(NSDictionary *)dict;
 
 @end
 

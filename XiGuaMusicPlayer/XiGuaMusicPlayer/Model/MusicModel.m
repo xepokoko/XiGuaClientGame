@@ -20,4 +20,10 @@
     return [[self alloc] initWithDict:dict];
 }
 
+- (BOOL)isFavorite {
+    if (!_favorite) {
+        _favorite = NO;
+    }
+    return _favorite;
+}
 @end

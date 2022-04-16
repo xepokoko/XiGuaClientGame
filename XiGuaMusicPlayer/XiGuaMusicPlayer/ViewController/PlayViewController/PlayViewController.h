@@ -6,10 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MusicModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PlayViewController : UIViewController
+
 
 @end
 
