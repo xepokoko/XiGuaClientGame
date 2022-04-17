@@ -54,6 +54,7 @@
 //    CGFloat naviHeight = navi_1.navigationBar.frame.size.height;b
     MusicPlayerView *view1 = [[MusicPlayerView alloc]initWithFrame:CGRectMake(0, SCREENHEIGHT-tabHeight-100, SCREENWIDTH, 100)];
     view1.backgroundColor = [UIColor redColor];
+    view1.music = homeViewController.musicList[homeViewController.musicList.count - 1];
 
     [tabBarController.view addSubview:view1];
     [tabBarController.view bringSubviewToFront:view1];
