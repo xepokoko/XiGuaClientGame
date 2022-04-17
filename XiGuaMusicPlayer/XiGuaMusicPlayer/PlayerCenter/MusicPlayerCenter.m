@@ -6,6 +6,7 @@
 //
 
 #import "MusicPlayerCenter.h"
+#import "VoiceBroadcastTool.h"
 
 static MusicPlayerCenter *playerCenter;
 
@@ -86,6 +87,9 @@ static MusicPlayerCenter *playerCenter;
     if ([self.delegate respondsToSelector:@selector(playNextMusicWithPlayMode:)]) {
         [self.delegate playNextMusicWithPlayMode:self.playMode];
     }
+    
+    [VoiceBroadcastTool voiceBroadCastWithString:self.music.songName];
+    
     [self playMusic];
     
 }

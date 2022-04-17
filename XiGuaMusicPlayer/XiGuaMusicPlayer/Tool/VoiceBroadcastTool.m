@@ -41,4 +41,8 @@
     return self;
 }
 
++ (void)voiceBroadCastWithString:(NSString *)string {
+    [[[VoiceBroadcastTool alloc] init] voiceBroadcastWithString:string];
+}
+
 @end
