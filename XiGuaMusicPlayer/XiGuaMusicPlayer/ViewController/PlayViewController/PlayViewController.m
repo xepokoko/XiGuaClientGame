@@ -47,7 +47,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    self.tabBarController.tabBar.hidden = NO;
+//    self.tabBarController.tabBar.hidden = NO;
     [self.tabBarController.view.subviews lastObject].hidden = NO;
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"updateProgressNotification" object:nil];

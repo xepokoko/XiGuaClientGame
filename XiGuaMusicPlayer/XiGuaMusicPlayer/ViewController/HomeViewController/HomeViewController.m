@@ -141,6 +141,7 @@
     
     cell.musicModel = _musicList[indexPath.row];
     //获取model后设置数据。
+    cell.indexLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row+1];
     [cell setInfo];
     
     return cell;
