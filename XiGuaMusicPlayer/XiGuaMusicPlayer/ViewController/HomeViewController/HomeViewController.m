@@ -39,7 +39,6 @@
     //设置旁白
     [self setVoiceOver];
     
-    self.title.accessibilityValue = [NSString stringWithFormat:@"共有歌曲%lu首", self.musicList.count];
 }
 //初始化和布局
 - (void)setAndLayoutViews {
@@ -52,11 +51,6 @@
     [self.view addSubview:self.favoriteBtn];
     
     [self.view addSubview:self.dailyRecmdBtn];
-    
-    
-    MusicPlayerView *playerView = [self.tabBarController.tabBar.subviews lastObject];
-    NSInteger randomNumber = arc4random() % 4;
-    playerView.music = self.musicList[randomNumber];
     
 }
 #pragma mark - 重写get
