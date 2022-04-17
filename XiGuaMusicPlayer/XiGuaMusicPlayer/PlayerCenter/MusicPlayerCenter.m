@@ -47,6 +47,9 @@ static MusicPlayerCenter *playerCenter;
 - (void)playMusic {
     [self.player prepareToPlay];
     [self.player play];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"playAnotherMusicNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updatePlayPasuseButtonNotification" object:nil];
 }
 
 /// 单例
@@ -68,22 +71,29 @@ static MusicPlayerCenter *playerCenter;
     } else {
         [_player play];
     }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updatePlayPasuseButtonNotification" object:nil];
 }
 
 
 /// 播放下一首歌
 - (void)playNextMusic {
+    if (self.playMode == MusicPlayModeRepeatOne) {
+        [self replayMusic];
+        return;
+    }
+    
     if ([self.delegate respondsToSelector:@selector(playNextMusicWithPlayMode:)]) {
         [self.delegate playNextMusicWithPlayMode:self.playMode];
     }
     [self playMusic];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"playAnotherMusicNotification" object:nil];
+    
 }
 
 /// 播放上一首歌
 - (void)playLastMusic {
-    if (self.player.currentTime > 20) {
-        self.player.currentTime = 0;
+    if (self.player.currentTime > 20 || self.playMode == MusicPlayModeRepeatOne) {
+        [self replayMusic];
         return;
     }
     
@@ -91,7 +101,6 @@ static MusicPlayerCenter *playerCenter;
         [self.delegate playLastMusicWithPlayMode:self.playMode];
     }
     [self playMusic];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"playAnotherMusic" object:nil];
 }
 
 /// 播放完毕，player 的代理
@@ -99,8 +108,13 @@ static MusicPlayerCenter *playerCenter;
     if (_playMode != MusicPlayModeRepeat) { //不是循环播放，播放下一首
         [self playNextMusic];
     } else {    //继续播放当前歌曲
-        [self playMusic];
+        [self replayMusic];
     }
+}
+
+/// 重新播放音乐
+- (void)replayMusic {
+    self.player.currentTime = 0;
 }
 
 @end

@@ -21,9 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) MusicModel *musicModel;
 
-@property (nonatomic, weak) UIView *cardView;
-
-
 - (void)setInfo;
 @end
 

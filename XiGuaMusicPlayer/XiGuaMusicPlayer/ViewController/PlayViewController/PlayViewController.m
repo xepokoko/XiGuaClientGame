@@ -42,6 +42,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateProcessSlider) name:@"updateProgressNotification" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playAnotherMusic) name:@"playAnotherMusicNotification" object:nil];
+    
+    self.processSlider.value = [MusicPlayerCenter defaultCenter].player.currentTime;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -58,6 +60,9 @@
     [self layoutSubviews];
     
     [[MusicPlayerCenter defaultCenter] playMusic];
+    
+    self.title = [MusicPlayerCenter defaultCenter].music.songName;
+    [self updateLikeBtn];
 }
 
 - (void)layoutSubviews {

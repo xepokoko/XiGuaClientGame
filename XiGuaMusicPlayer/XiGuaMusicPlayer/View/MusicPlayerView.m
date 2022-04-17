@@ -18,7 +18,7 @@
     
     if (self) {
         
-        self.isAccessibilityElement = YES;//适配无障碍
+//        self.isAccessibilityElement = YES;//适配无障碍
 
         CGFloat play_x = ScreenWidth/2-ScreenWidth/6;
         CGFloat last_x = 0;
@@ -46,10 +46,7 @@
         [self addSubview:_playBtn];
         [_playBtn setImage:[UIImage systemImageNamed:@"play.fill" configurationWithFontOfSize:50] forState:UIControlStateNormal];
         
-        
-        
-        
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePlayPauseButton) name:@"updatePlayPasuseButtonNotification" object:nil];
         
     }
     return self;
@@ -84,9 +81,14 @@
     [playerCenter togglePlayPause];
     
     playerCenter.playing = !playerCenter.playing;
-    
-    
-    
 }
 
+
+- (void)updatePlayPauseButton {
+    if ([[MusicPlayerCenter defaultCenter] isPlaying]) {
+        [self.playBtn setImage:[UIImage systemImageNamed:@"pause.fill" configurationWithFontOfSize:50] forState:UIControlStateNormal];
+    } else {
+        [self.playBtn setImage:[UIImage systemImageNamed:@"play.fill" configurationWithFontOfSize:50] forState:UIControlStateNormal];
+    }
+}
 @end

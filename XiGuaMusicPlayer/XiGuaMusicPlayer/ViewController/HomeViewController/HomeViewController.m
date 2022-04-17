@@ -21,19 +21,22 @@
 /// 记录选中的歌曲的 indexPath
 @property (nonatomic, strong)NSIndexPath *selectedIndexPath;
 
+//@property (nonatomic, strong)PlayViewController *playViewController;
+
 @end
 
 @implementation HomeViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [MusicPlayerCenter defaultCenter].delegate = self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self setAndLayoutViews];
     
-    self.view.backgroundColor = [UIColor systemGray6Color];
-    
-    
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 //初始化和布局
 - (void)setAndLayoutViews {
@@ -86,7 +89,7 @@
         
         _listTabelView = [[UITableView alloc]initWithFrame:CGRectMake(0, naviHeight+spaceHeight, ScreenWidth, ScreenHeight-naviHeight-globalPlayerHeight-tabHeight-spaceHeight)];
         
-        _listTabelView.backgroundColor = [UIColor systemGray6Color];
+        _listTabelView.backgroundColor = [UIColor whiteColor];
         _listTabelView.delegate = self;
         _listTabelView.dataSource = self;
         
@@ -147,23 +150,30 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
-    return 110;
+    return 90;
 }
 
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (_selectedIndexPath == indexPath) {
+        // 正在播放歌曲，且点击的 cell 正在播放
+        // 直接 push
+        PlayViewController *controller = [[PlayViewController alloc] init];
+        [self.navigationController pushViewController:controller animated:YES];
+        return;
+    }
+    
+    // 没有播放歌曲
     MusicModel *music = self.musicList[indexPath.row];
     MusicPlayerCenter *center = [MusicPlayerCenter defaultCenter];
     center.music = music;
-    center.delegate = self;
     if (center.progressTimer == nil) {
         center.progressTimer = [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"updateProgressNotification" object:nil];
         }];
     }
     PlayViewController *controller = [[PlayViewController alloc] init];
-    
     _selectedIndexPath = indexPath;
     
     [self.navigationController pushViewController:controller animated:YES];
