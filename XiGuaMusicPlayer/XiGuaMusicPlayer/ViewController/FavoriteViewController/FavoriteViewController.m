@@ -1,37 +1,33 @@
 //
-//  DailyRecmViewController.m
+//  FavoriteViewController.m
 //  XiGuaMusicPlayer
 //
 //  Created by 谢恩平 on 2022/4/16.
 //
 
-#import "DailyRecmViewController.h"
+#import "FavoriteViewController.h"
 #import "ListTableViewCell.h"
 
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 
-@interface DailyRecmViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface FavoriteViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
-
 @end
 
-@implementation DailyRecmViewController
+@implementation FavoriteViewController
 
 - (void)viewWillAppear:(BOOL)animated {
     self.tabBarController.tabBar.hidden = YES;
     
     
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    self.tabBarController.tabBar.hidden = NO;
-    UIView *view = [self.tabBarController.view.subviews lastObject];
-    
-    CGFloat tabHeight = self.tabBarController.tabBar.frame.size.height;
-
-    [view setFrame:CGRectMake(0,ScreenHeight-tabHeight-100, ScreenWidth, 100)];
+//    self.tabBarController.tabBar.hidden = NO;
+   
 
     
 }
@@ -40,14 +36,14 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
-    self.title = @"每日推荐";
+    self.title = @"收藏列表";
 
 }
 
 - (UITableView *)tableView {
     if (_tableView == nil) {
-        CGFloat naviHeight = 91; //直接在图层获取的。      
-        
+        CGFloat naviHeight = 91; //直接在图层获取的数据。
+      
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, naviHeight, ScreenWidth, ScreenHeight-naviHeight)];
         
         _tableView.backgroundColor = [UIColor whiteColor];
@@ -91,6 +87,7 @@
     
     return 60;
 }
+
 
 
 

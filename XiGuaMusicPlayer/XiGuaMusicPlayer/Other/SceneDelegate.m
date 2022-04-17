@@ -10,9 +10,8 @@
 #import "UIImage+SFFont.h"
 #import "HomeViewController.h"
 #import "MusicPlayerView.h"
-
-#define ScreenHeight [UIScreen mainScreen].bounds.size.height
-#define ScreenWidth [UIScreen mainScreen].bounds.size.width
+#import "VoiceSearchCenter.h"
+#import "Common.h"
 
 
 @interface SceneDelegate ()
@@ -43,18 +42,26 @@
     UINavigationController *navi_2 = [[UINavigationController alloc]initWithRootViewController:controller2];
 
     [tabBarController addChildViewController:navi_2];
-    
+    tabBarController.tabBar.hidden = YES;
     self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];
     
  
     //一直处于下方的播放控制view
     CGFloat tabHeight = tabBarController.tabBar.frame.size.height;
-    CGFloat naviHeight = navi_1.navigationBar.frame.size.height;
-    MusicPlayerView *view1 = [[MusicPlayerView alloc]initWithFrame:CGRectMake(0, ScreenHeight-tabHeight-100, ScreenWidth, 100)];
+//    CGFloat naviHeight = navi_1.navigationBar.frame.size.height;b
+    MusicPlayerView *view1 = [[MusicPlayerView alloc]initWithFrame:CGRectMake(0, SCREENHEIGHT-tabHeight-100, SCREENWIDTH, 100)];
     view1.backgroundColor = [UIColor redColor];
     [tabBarController.view addSubview:view1];
     [tabBarController.view bringSubviewToFront:view1];
+    
+    VoiceSearchCenter *VSCenter = [VoiceSearchCenter defaultCenter];
+    [VSCenter setFrameWithRect:CGRectMake(0, CGRectGetMaxY(view1.frame), SCREENWIDTH, SCREENHEIGHT-CGRectGetMaxY(view1.frame))];
+    
+    [tabBarController.view addSubview:VSCenter.view];
+    [tabBarController.view bringSubviewToFront:VSCenter.view];
+    
+    
 }
 
 

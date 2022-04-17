@@ -86,7 +86,7 @@
         
         _listTabelView = [[UITableView alloc]initWithFrame:CGRectMake(0, naviHeight+spaceHeight, ScreenWidth, ScreenHeight-naviHeight-globalPlayerHeight-tabHeight-spaceHeight)];
         
-        _listTabelView.backgroundColor = [UIColor systemGray6Color];
+        _listTabelView.backgroundColor = [UIColor whiteColor];
         _listTabelView.delegate = self;
         _listTabelView.dataSource = self;
         
@@ -138,6 +138,7 @@
     
     cell.musicModel = _musicList[indexPath.row];
     //获取model后设置数据。
+    cell.indexLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row+1];
     [cell setInfo];
     
     return cell;

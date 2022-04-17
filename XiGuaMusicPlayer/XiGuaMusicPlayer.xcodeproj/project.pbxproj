@@ -28,6 +28,7 @@
 		A6D03DF2280AD01400D2CAC3 /* DailyRecmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D03DF1280AD01400D2CAC3 /* DailyRecmViewController.m */; };
 		A6D03DF5280AD03100D2CAC3 /* FavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D03DF4280AD03100D2CAC3 /* FavoriteViewController.m */; };
 		A6D03DF8280AEA8200D2CAC3 /* MusicPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D03DF7280AEA8200D2CAC3 /* MusicPlayerView.m */; };
+		A6D03E03280BBC4000D2CAC3 /* VoiceSearchCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D03E02280BBC4000D2CAC3 /* VoiceSearchCenter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,8 @@
 		A6D03DF4280AD03100D2CAC3 /* FavoriteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoriteViewController.m; sourceTree = "<group>"; };
 		A6D03DF6280AEA8200D2CAC3 /* MusicPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicPlayerView.h; sourceTree = "<group>"; };
 		A6D03DF7280AEA8200D2CAC3 /* MusicPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicPlayerView.m; sourceTree = "<group>"; };
+		A6D03E01280BBC4000D2CAC3 /* VoiceSearchCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoiceSearchCenter.h; sourceTree = "<group>"; };
+		A6D03E02280BBC4000D2CAC3 /* VoiceSearchCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VoiceSearchCenter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +101,7 @@
 		9B595472280A7AF100A3022E /* XiGuaMusicPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				A6D03E00280BBBF300D2CAC3 /* VoiceSearchCenter */,
 				9B5954B6280A9C5600A3022E /* Common.h */,
 				9B5954AB280A878500A3022E /* Category */,
 				9B595495280A7D1A00A3022E /* MusicsAndPlist */,
@@ -115,12 +119,10 @@
 		9B59548C280A7B3200A3022E /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				A6D03DFA280BB38D00D2CAC3 /* FavoriteViewController */,
+				A6D03DF9280BB36800D2CAC3 /* DailyRecmViewContoller */,
 				A6D03DE8280AB5D300D2CAC3 /* HomeViewController */,
 				9B5954A4280A7FA800A3022E /* PlayViewController */,
-				A6D03DF0280AD01400D2CAC3 /* DailyRecmViewController.h */,
-				A6D03DF1280AD01400D2CAC3 /* DailyRecmViewController.m */,
-				A6D03DF3280AD03100D2CAC3 /* FavoriteViewController.h */,
-				A6D03DF4280AD03100D2CAC3 /* FavoriteViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -160,9 +162,8 @@
 		9B595494280A7BDC00A3022E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A6D03DFB280BB53E00D2CAC3 /* MusicPlayerView */,
 				A6D03DEC280AB64300D2CAC3 /* Cell */,
-				A6D03DF6280AEA8200D2CAC3 /* MusicPlayerView.h */,
-				A6D03DF7280AEA8200D2CAC3 /* MusicPlayerView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -214,6 +215,42 @@
 				A6D03DEE280AB66200D2CAC3 /* ListTableViewCell.m */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		A6D03DF9280BB36800D2CAC3 /* DailyRecmViewContoller */ = {
+			isa = PBXGroup;
+			children = (
+				A6D03DF0280AD01400D2CAC3 /* DailyRecmViewController.h */,
+				A6D03DF1280AD01400D2CAC3 /* DailyRecmViewController.m */,
+			);
+			path = DailyRecmViewContoller;
+			sourceTree = "<group>";
+		};
+		A6D03DFA280BB38D00D2CAC3 /* FavoriteViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A6D03DF3280AD03100D2CAC3 /* FavoriteViewController.h */,
+				A6D03DF4280AD03100D2CAC3 /* FavoriteViewController.m */,
+			);
+			path = FavoriteViewController;
+			sourceTree = "<group>";
+		};
+		A6D03DFB280BB53E00D2CAC3 /* MusicPlayerView */ = {
+			isa = PBXGroup;
+			children = (
+				A6D03DF6280AEA8200D2CAC3 /* MusicPlayerView.h */,
+				A6D03DF7280AEA8200D2CAC3 /* MusicPlayerView.m */,
+			);
+			path = MusicPlayerView;
+			sourceTree = "<group>";
+		};
+		A6D03E00280BBBF300D2CAC3 /* VoiceSearchCenter */ = {
+			isa = PBXGroup;
+			children = (
+				A6D03E01280BBC4000D2CAC3 /* VoiceSearchCenter.h */,
+				A6D03E02280BBC4000D2CAC3 /* VoiceSearchCenter.m */,
+			);
+			path = VoiceSearchCenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B595475280A7AF100A3022E /* AppDelegate.m in Sources */,
+				A6D03E03280BBC4000D2CAC3 /* VoiceSearchCenter.m in Sources */,
 				9B5954B9280AAC2100A3022E /* MusicModel.m in Sources */,
 				9B5954AA280A7FE000A3022E /* MusicPlayerCenter.m in Sources */,
 				9B595486280A7AF200A3022E /* main.m in Sources */,
