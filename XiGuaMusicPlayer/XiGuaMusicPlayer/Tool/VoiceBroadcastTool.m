@@ -24,7 +24,7 @@
     //语速
     _utterance.rate=0.5;
     //音量
-    _utterance.volume=0.8;
+    _utterance.volume=1;
     //音调
     _utterance.pitchMultiplier=1;
     
@@ -39,6 +39,10 @@
     }
     
     return self;
+}
+
++ (void)voiceBroadCastWithString:(NSString *)string {
+    [[[VoiceBroadcastTool alloc] init] voiceBroadcastWithString:string];
 }
 
 @end

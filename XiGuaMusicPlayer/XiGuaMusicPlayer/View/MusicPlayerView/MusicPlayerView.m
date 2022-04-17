@@ -46,8 +46,9 @@
         [self addSubview:_playBtn];
         [_playBtn setImage:[UIImage systemImageNamed:@"play.fill" configurationWithFontOfSize:50] forState:UIControlStateNormal];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePlayPauseButton) name:@"updatePlayPasuseButtonNotification" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePlayPauseBtn) name:@"updatePlayPauseBtnNotification" object:nil];
         
+        [self setVoiceOver];
     }
     return self;
 }
@@ -74,35 +75,47 @@
     
     if ([playerCenter isPlaying]) {
         [button setImage:[UIImage systemImageNamed:@"play.fill" configurationWithFontOfSize:50] forState:UIControlStateNormal];
-        
+
     } else {
         [button setImage:[UIImage systemImageNamed:@"pause.fill" configurationWithFontOfSize:50] forState:UIControlStateNormal];
     }
     [playerCenter togglePlayPause];
-    
-    playerCenter.playing = !playerCenter.playing;
 }
 
 
-- (void)updatePlayPauseButton {
+- (void)updatePlayPauseBtn {
     if ([[MusicPlayerCenter defaultCenter] isPlaying]) {
         [self.playBtn setImage:[UIImage systemImageNamed:@"pause.fill" configurationWithFontOfSize:50] forState:UIControlStateNormal];
     } else {
         [self.playBtn setImage:[UIImage systemImageNamed:@"play.fill" configurationWithFontOfSize:50] forState:UIControlStateNormal];
     }
+    [self updatePlayPauseBtnVoiceOver];
 }
 
 #pragma mark - 设置旁白
 - (void)setVoiceOver {
     
     _lastSongBtn.accessibilityLabel = @"上一首";
-    _lastSongBtn.accessibilityHint = @"点击后将为你播放歌单中的上一首歌曲";
+    _lastSongBtn.accessibilityHint = @"双击播放上一首歌曲";
     
     _nextSongBtn.accessibilityLabel = @"下一首";
-    _nextSongBtn.accessibilityHint = @"点击后将为你播放歌单中的下一首歌曲";
+    _nextSongBtn.accessibilityHint = @"双击播放下一首歌曲";
     
-    _playBtn.accessibilityLabel = @"播放或暂停";
-    _playBtn.accessibilityHint = @"点击后将为你播放歌曲或暂停播放";
+    _playBtn.accessibilityLabel = @"播放状态";
+    [self updatePlayPauseBtnVoiceOver];
+}
 
+- (void)updatePlayPauseBtnVoiceOver {
+    NSString *valueString = [NSString string];
+    NSString *hintString = [NSString string];
+    if ([[MusicPlayerCenter defaultCenter] isPlaying]) {
+        valueString = @"播放";
+        hintString = @"双击暂停歌曲";
+    } else {
+        valueString = @"暂停";
+        hintString = @"双击播放歌曲";
+    }
+    _playBtn.accessibilityValue = valueString;
+    _playBtn.accessibilityHint = hintString;
 }
 @end

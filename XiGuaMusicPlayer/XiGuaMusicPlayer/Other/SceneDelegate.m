@@ -50,6 +50,7 @@
     //一直处于下方的播放控制view
     CGFloat tabHeight = tabBarController.tabBar.frame.size.height;
 
+    
 //    CGFloat naviHeight = navi_1.navigationBar.frame.size.height;b
     MusicPlayerView *view1 = [[MusicPlayerView alloc]initWithFrame:CGRectMake(0, SCREENHEIGHT-tabHeight-100, SCREENWIDTH, 100)];
     view1.backgroundColor = [UIColor redColor];
@@ -61,9 +62,8 @@
     [VSCenter setFrameWithRect:CGRectMake(0, CGRectGetMaxY(view1.frame), SCREENWIDTH, SCREENHEIGHT-CGRectGetMaxY(view1.frame))];
     
     [tabBarController.view addSubview:VSCenter.view];
-    [tabBarController.view bringSubviewToFront:VSCenter.view];
     
-    
+    [tabBarController.view bringSubviewToFront:view1];
 }
 
 

@@ -22,8 +22,6 @@
 /// 记录选中的歌曲的 indexPath
 @property (nonatomic, strong)NSIndexPath *selectedIndexPath;
 
-//@property (nonatomic, strong)PlayViewController *playViewController;
-
 @end
 
 @implementation HomeViewController
@@ -40,6 +38,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     //设置旁白
     [self setVoiceOver];
+    
+    self.title.accessibilityValue = [NSString stringWithFormat:@"共有歌曲%lu首", self.musicList.count];
 }
 //初始化和布局
 - (void)setAndLayoutViews {
@@ -62,22 +62,43 @@
 #pragma mark - 重写get
 - (UIButton *)dailyRecmdBtn {
     if (_dailyRecmdBtn == nil) {
+        CGFloat padding = 20;
         
-        _dailyRecmdBtn = [[UIButton alloc]initWithFrame:CGRectMake(44, 95, 112, 90)];
+        CGFloat buttonX = padding;
+        CGFloat buttonY = 91 + padding / 2;
+        CGFloat buttonW = (ScreenWidth - padding * 3) / 2;
+        CGFloat buttonH = CGRectGetMinY(self.listTabelView.frame) - padding - buttonY;
+        _dailyRecmdBtn = [[UIButton alloc]initWithFrame:CGRectMake(buttonX,
+                                                                   buttonY,
+                                                                   buttonW,
+                                                                   buttonH)];
         [_dailyRecmdBtn setBackgroundColor:[UIColor systemGreenColor]];
+        _dailyRecmdBtn.layer.cornerRadius = 10;
         [_dailyRecmdBtn setTitle:@"每日推荐" forState:UIControlStateNormal];
         [_dailyRecmdBtn addTarget:self action:@selector(touchUpInsideDailyRecmdBtn:) forControlEvents:UIControlEventTouchUpInside];
         
+        _dailyRecmdBtn.accessibilityValue = @"共有20首歌曲";
     }
     return _dailyRecmdBtn;
 }
 
 - (UIButton *)favoriteBtn {
     if (_favoriteBtn == nil) {
-        _favoriteBtn = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth - 44-112, 95, 112, 90)];
+        CGFloat padding = 20;
+        CGFloat buttonW = self.dailyRecmdBtn.frame.size.width;
+        CGFloat buttonH = self.dailyRecmdBtn.frame.size.height;
+        CGFloat buttonY = self.dailyRecmdBtn.frame.origin.y;
+        CGFloat buttonX = ScreenWidth - padding - buttonW;
+        _favoriteBtn = [[UIButton alloc]initWithFrame:CGRectMake(buttonX,
+                                                                 buttonY,
+                                                                 buttonW,
+                                                                 buttonH)];
         [_favoriteBtn setBackgroundColor:[UIColor systemYellowColor]];
+        _favoriteBtn.layer.cornerRadius = 10;
         [_favoriteBtn setTitle:@"收藏列表" forState:UIControlStateNormal];
         [_favoriteBtn addTarget:self action:@selector(touchUpInsideFavorateBtn:) forControlEvents:UIControlEventTouchUpInside];
+        
+        _favoriteBtn.accessibilityValue = @"共有四首歌曲";
     }
     return _favoriteBtn;
 }
@@ -275,8 +296,8 @@
 
 
 - (void)setVoiceOver {
-    self.dailyRecmdBtn.accessibilityHint = @"双击后将进入每日推荐的歌曲列表";
-    self.favoriteBtn.accessibilityHint = @"双击后将进入收藏列表";
+    self.dailyRecmdBtn.accessibilityHint = @"双击进入每日推荐的歌曲列表";
+    self.favoriteBtn.accessibilityHint = @"双击进入收藏的歌曲列表";
 }
 
 @end

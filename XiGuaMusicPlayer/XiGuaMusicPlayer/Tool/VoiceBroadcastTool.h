@@ -16,6 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)AVSpeechUtterance* utterance;
 @property (nonatomic, copy) NSString* displayPinYinContStr;
 - (void)voiceBroadcastWithString:(NSString *)str;
+
+
+/// 阅读传入的 string
++ (void)voiceBroadCastWithString:(NSString *)string;
 @end
 
 NS_ASSUME_NONNULL_END

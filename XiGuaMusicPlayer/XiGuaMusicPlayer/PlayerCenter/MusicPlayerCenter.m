@@ -6,6 +6,7 @@
 //
 
 #import "MusicPlayerCenter.h"
+#import "VoiceBroadcastTool.h"
 
 static MusicPlayerCenter *playerCenter;
 
@@ -49,7 +50,7 @@ static MusicPlayerCenter *playerCenter;
     [self.player play];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"playAnotherMusicNotification" object:nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"updatePlayPasuseButtonNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updatePlayPauseBtnNotification" object:nil];
 }
 
 /// 单例
@@ -72,7 +73,7 @@ static MusicPlayerCenter *playerCenter;
         [_player play];
     }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"updatePlayPasuseButtonNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updatePlayPauseBtnNotification" object:nil];
 }
 
 
@@ -86,8 +87,13 @@ static MusicPlayerCenter *playerCenter;
     if ([self.delegate respondsToSelector:@selector(playNextMusicWithPlayMode:)]) {
         [self.delegate playNextMusicWithPlayMode:self.playMode];
     }
-    [self playMusic];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updatePlayPauseBtnNotification" object:nil];
     
+    // 延迟等旁白念完再念歌名
+    [self performSelector:@selector(voiceSongName) withObject:nil afterDelay:1];
+    
+    // 延迟等歌名念完再放歌
+    [self performSelector:@selector(playMusic) withObject:nil afterDelay:2];
 }
 
 /// 播放上一首歌
@@ -96,11 +102,17 @@ static MusicPlayerCenter *playerCenter;
         [self replayMusic];
         return;
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updatePlayPauseBtnNotification" object:nil];
     
     if ([self.delegate respondsToSelector:@selector(playLastMusicWithPlayMode:)]) {
         [self.delegate playLastMusicWithPlayMode:self.playMode];
     }
-    [self playMusic];
+    
+    // 延迟等旁白念完再念歌名
+    [self performSelector:@selector(voiceSongName) withObject:nil afterDelay:1];
+    
+    // 延迟等歌名念完再放歌
+    [self performSelector:@selector(playMusic) withObject:nil afterDelay:2];
 }
 
 /// 播放完毕，player 的代理
@@ -115,6 +127,11 @@ static MusicPlayerCenter *playerCenter;
 /// 重新播放音乐
 - (void)replayMusic {
     self.player.currentTime = 0;
+}
+
+/// 念歌名
+- (void)voiceSongName {
+    [VoiceBroadcastTool voiceBroadCastWithString:self.music.songName];
 }
 
 @end
