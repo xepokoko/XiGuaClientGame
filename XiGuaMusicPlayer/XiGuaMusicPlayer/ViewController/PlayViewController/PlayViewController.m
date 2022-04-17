@@ -47,7 +47,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-//    self.tabBarController.tabBar.hidden = NO;
+    self.tabBarController.tabBar.hidden = NO;
     [self.tabBarController.view.subviews lastObject].hidden = NO;
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"updateProgressNotification" object:nil];
@@ -82,7 +82,7 @@
     processSlider.maximumValue = [MusicPlayerCenter defaultCenter].player.duration;
     processSlider.minimumTrackTintColor = [UIColor systemBlueColor];
     [processSlider addTarget:self action:@selector(sliderTouchDown) forControlEvents:UIControlEventValueChanged | UIControlEventTouchDown];
-    [processSlider addTarget:self action:@selector(sliderTouchUp) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
+    [processSlider addTarget:self action:@selector(sliderTouchUp) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside | UIControlEventValueChanged];
     [self.view addSubview:processSlider];
     self.processSlider = processSlider;
     
@@ -149,33 +149,34 @@
 #pragma mark - voiceOver
 - (void)setVoiceOver {
     _processSlider.accessibilityLabel = @"播放进度";
-    _processSlider.accessibilityValue = [NSString stringWithFormat:@"%f",[MusicPlayerCenter defaultCenter].player.currentTime];
     _processSlider.accessibilityHint = @"上滑前进，下滑后退";
     
     _volumeSlider.accessibilityLabel = @"音量大小";
     _volumeSlider.accessibilityHint = @"上滑增大音量，下滑减小音量";
     
     _backwardBtn.accessibilityLabel = @"上一首";
-    _backwardBtn.accessibilityHint = @"双击播放上一首";
+    _backwardBtn.accessibilityHint = @"双击播放上一首歌曲";
     
     _forwardBtn.accessibilityLabel = @"下一首";
-    _forwardBtn.accessibilityHint = @"双击播放下一首";
+    _forwardBtn.accessibilityHint = @"双击播放下一首歌曲";
     
     [self updateLikeBtnVoiceOver];
     
+    _playPauseBtn.accessibilityLabel = @"播放状态";
     [self updatePlayPauseBtnVoiceOver];
     
     _playModeBtn.accessibilityLabel = @"播放模式";
+    _playModeBtn.accessibilityHint = @"双击切换播放模式";
     [self updatePlayModeBtnVoiceOver];
 }
 
 /// 改变 likeBtn voiceOver
 - (void)updateLikeBtnVoiceOver {
     if ([[MusicPlayerCenter defaultCenter].music isFavorite]) {
-        _likeBtn.accessibilityLabel = @"取消喜欢";
+        _likeBtn.accessibilityLabel = @"喜欢";
         _likeBtn.accessibilityHint = @"双击取消喜欢歌曲";
     } else {
-        _likeBtn.accessibilityLabel = @"喜欢";
+        _likeBtn.accessibilityLabel = @"取消喜欢";
         _likeBtn.accessibilityHint = @"双击设置喜欢歌曲";
     }
 }
@@ -183,31 +184,37 @@
 /// 改变playPausebtn voiceOver
 - (void)updatePlayPauseBtnVoiceOver {
     NSString *valueString = [NSString string];
+    NSString *hintString = [NSString string];
+    
+    if ([[MusicPlayerCenter defaultCenter] isPlaying]) {
+        valueString = @"播放";
+        hintString = @"双击暂停歌曲";
+    } else {
+        valueString = @"暂停";
+        hintString = @"双击播放歌曲";
+    }
+    _playPauseBtn.accessibilityValue = valueString;
+    _playPauseBtn.accessibilityHint = hintString;
 }
 
 /// 改变 playModeBtn VoiceOver
 - (void)updatePlayModeBtnVoiceOver {
     NSString *valueString = [NSString string];
-    NSString *hintString = [NSString string];
     
     switch ([MusicPlayerCenter defaultCenter].playMode) {
         case MusicPlayModeRepeat:
             valueString = @"列表循环";
-            hintString = @"双击切换为单曲循环";
             break;
         case MusicPlayModeRepeatOne:
             valueString = @"单曲循环";
-            hintString = @"双击切换为随机播放";
             break;
         case MusicPlayModeShuffle:
             valueString = @"随机播放";
-            hintString = @"双击切换为列表循环";
             break;
         default:
             break;
     }
     _playModeBtn.accessibilityValue = valueString;
-    _playModeBtn.accessibilityHint = hintString;
 }
 
 
@@ -226,6 +233,7 @@
         [self.playPauseBtn setImage:[UIImage systemImageNamed:@"pause.fill" configurationWithFontOfSize:40] forState:UIControlStateNormal];
     }
     [center togglePlayPause];
+    [self updatePlayPauseBtnVoiceOver];
 }
 
 /// 点击下一首
@@ -244,6 +252,7 @@
     }
     [self.likeBtn setImage:[UIImage systemImageNamed:imageName configurationWithFontOfSize:40] forState:UIControlStateNormal];
     center.music.favorite = !center.music.favorite;
+    [self updateLikeBtnVoiceOver];
 }
 
 /// 切换播放模式
@@ -265,6 +274,7 @@
             break;
     }
     [self.playModeBtn setImage:[UIImage systemImageNamed:imageName configurationWithFontOfSize:40] forState:UIControlStateNormal];
+    [self updatePlayModeBtnVoiceOver];
 }
 
 

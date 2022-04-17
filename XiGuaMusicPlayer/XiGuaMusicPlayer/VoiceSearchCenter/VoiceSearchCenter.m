@@ -31,7 +31,7 @@ static VoiceSearchCenter *voiceSearchCenter;
     if (self) {
         
         self.view = [[UIView alloc] init];
-        self.view.backgroundColor = [UIColor systemGrayColor];
+        self.view.backgroundColor = [UIColor whiteColor];
         
         self.searchBtn = [[UIButton alloc] init];
         
@@ -86,9 +86,9 @@ static VoiceSearchCenter *voiceSearchCenter;
     
     self.isAccessibilityElement = YES;
     
-    self.accessibilityLabel = @"语音搜索";
-    self.accessibilityTraits = UIAccessibilityTraitButton;//设置为button
-    self.accessibilityHint = @"长按，说出你想要查询歌曲的名字，松开按钮后会为您返回搜索结果";
+    self.searchBtn.accessibilityLabel = @"语音搜索";
+    self.searchBtn.accessibilityTraits = UIAccessibilityTraitButton;//设置为button
+    self.searchBtn.accessibilityHint = @"长按，说出你想要查询歌曲的名字，松开按钮后会为您返回搜索结果";
     
     
 }
