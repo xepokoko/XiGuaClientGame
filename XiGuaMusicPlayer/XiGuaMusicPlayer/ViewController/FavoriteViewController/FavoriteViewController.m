@@ -35,10 +35,10 @@
     [self.view addSubview:self.tableView];
     self.title = @"收藏列表";
 
-    VoiceBroadcastTool *VBTool = [[VoiceBroadcastTool alloc] init];
-    
-    [VBTool voiceBroadcastWithString:[NSString stringWithFormat:@"您总共收藏了%ld首歌曲", self.musicList.count]];
-    
+//    VoiceBroadcastTool *VBTool = [[VoiceBroadcastTool alloc] init];
+//    
+//    [VBTool voiceBroadcastWithString:[NSString stringWithFormat:@"您总共收藏了%ld首歌曲", self.musicList.count]];
+//    
 }
 
 - (UITableView *)tableView {

@@ -9,6 +9,7 @@
 #import "Common.h"
 #import "UIImage+SFFont.h"
 #import "MusicPlayerCenter.h"
+#import "VoiceBroadcastTool.h"
 
 
 @interface PlayViewController ()
@@ -224,6 +225,10 @@
 #pragma mark - 按钮点击事件
 /// 点击上一首
 - (void)backwardBtnClicked:(UIButton *)sender {
+    if ([MusicPlayerCenter defaultCenter].playMode == MusicPlayModeRepeatOne) {
+        [VoiceBroadcastTool voiceBroadCastWithString:@"当前播放模式为单曲循环"];
+        return;
+    }
     [[MusicPlayerCenter defaultCenter] playLastMusic];
 }
 
@@ -241,6 +246,10 @@
 
 /// 点击下一首
 - (void)forwardBtnClicked:(UIButton *)sender {
+    if ([MusicPlayerCenter defaultCenter].playMode == MusicPlayModeRepeatOne) {
+        [VoiceBroadcastTool voiceBroadCastWithString:@"当前播放模式为单曲循环"];
+        return;
+    }
     [[MusicPlayerCenter defaultCenter] playNextMusic];
 }
 

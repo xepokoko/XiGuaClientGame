@@ -71,7 +71,8 @@
         [_dailyRecmdBtn setTitle:@"每日推荐" forState:UIControlStateNormal];
         [_dailyRecmdBtn addTarget:self action:@selector(touchUpInsideDailyRecmdBtn:) forControlEvents:UIControlEventTouchUpInside];
         
-        _dailyRecmdBtn.accessibilityValue = @"共有20首歌曲";
+        _dailyRecmdBtn.accessibilityValue = @"共有两首歌曲";
+        _dailyRecmdBtn.accessibilityHint = @"双击进入每日推荐";
     }
     return _dailyRecmdBtn;
 }
@@ -93,6 +94,7 @@
         [_favoriteBtn addTarget:self action:@selector(touchUpInsideFavorateBtn:) forControlEvents:UIControlEventTouchUpInside];
         
         _favoriteBtn.accessibilityValue = @"共有四首歌曲";
+        _favoriteBtn.accessibilityHint = @"双击进入我的收藏";
     }
     return _favoriteBtn;
 }
