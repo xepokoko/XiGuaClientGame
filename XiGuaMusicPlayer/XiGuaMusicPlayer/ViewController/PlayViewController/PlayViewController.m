@@ -38,6 +38,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     self.tabBarController.tabBar.hidden = YES;
     [self.tabBarController.view.subviews lastObject].hidden = YES;
+    NSUInteger index_1 = self.tabBarController.view.subviews.count-2;
+    self.tabBarController.view.subviews[index_1].hidden = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateProcessSlider) name:@"updateProgressNotification" object:nil];
     
@@ -49,7 +51,8 @@
 - (void)viewWillDisappear:(BOOL)animated {
     self.tabBarController.tabBar.hidden = NO;
     [self.tabBarController.view.subviews lastObject].hidden = NO;
-    
+    NSUInteger index_1 = self.tabBarController.view.subviews.count-2;
+    self.tabBarController.view.subviews[index_1].hidden = NO;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"updateProgressNotification" object:nil];
 }
 
