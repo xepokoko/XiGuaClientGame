@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) UIView *view;
 
+@property (nonatomic, strong) id focusObj;
 
 + (instancetype)defaultCenter;
 - (void)setFrameWithRect:(CGRect)rect;

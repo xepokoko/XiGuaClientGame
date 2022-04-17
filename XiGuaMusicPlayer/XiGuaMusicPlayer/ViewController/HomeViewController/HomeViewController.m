@@ -10,6 +10,7 @@
 #import "MusicPlayerCenter.h"
 #import "MusicModel.h"
 #import "MusicPlayerView.h"
+#import "VoiceSearchCenter.h"
 
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
@@ -37,6 +38,8 @@
     [self setAndLayoutViews];
     
     self.view.backgroundColor = [UIColor whiteColor];
+    //设置旁白
+    [self setVoiceOver];
 }
 //初始化和布局
 - (void)setAndLayoutViews {
@@ -140,6 +143,14 @@
     }
     
     cell.musicModel = _musicList[indexPath.row];
+    
+    //暂时设定个假数据，用于语音搜索完了之后就聚焦到某个被搜索到的cell上
+    if ([cell.musicModel.songName isEqualToString:@"陀飞轮"]) {
+        
+        [VoiceSearchCenter defaultCenter].focusObj = cell;
+        
+    }
+    
     //获取model后设置数据。
     cell.indexLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row+1];
     [cell setInfo];
@@ -260,6 +271,12 @@
     music = _musicList[newRow];
     center.music = music;
     self.selectedIndexPath = [NSIndexPath indexPathForRow:newRow inSection:_selectedIndexPath.section];
+}
+
+
+- (void)setVoiceOver {
+    self.dailyRecmdBtn.accessibilityHint = @"双击后将进入每日推荐的歌曲列表";
+    self.favoriteBtn.accessibilityHint = @"双击后将进入收藏列表";
 }
 
 @end
