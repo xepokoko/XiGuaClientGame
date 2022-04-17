@@ -29,6 +29,7 @@
 		A6D03DF5280AD03100D2CAC3 /* FavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D03DF4280AD03100D2CAC3 /* FavoriteViewController.m */; };
 		A6D03DF8280AEA8200D2CAC3 /* MusicPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D03DF7280AEA8200D2CAC3 /* MusicPlayerView.m */; };
 		A6D03E03280BBC4000D2CAC3 /* VoiceSearchCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D03E02280BBC4000D2CAC3 /* VoiceSearchCenter.m */; };
+		A6D03E07280BE6A000D2CAC3 /* VoiceBroadcastTool.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D03E06280BE6A000D2CAC3 /* VoiceBroadcastTool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,8 @@
 		A6D03DF7280AEA8200D2CAC3 /* MusicPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicPlayerView.m; sourceTree = "<group>"; };
 		A6D03E01280BBC4000D2CAC3 /* VoiceSearchCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoiceSearchCenter.h; sourceTree = "<group>"; };
 		A6D03E02280BBC4000D2CAC3 /* VoiceSearchCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VoiceSearchCenter.m; sourceTree = "<group>"; };
+		A6D03E05280BE6A000D2CAC3 /* VoiceBroadcastTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoiceBroadcastTool.h; sourceTree = "<group>"; };
+		A6D03E06280BE6A000D2CAC3 /* VoiceBroadcastTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VoiceBroadcastTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,7 @@
 		9B595472280A7AF100A3022E /* XiGuaMusicPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				A6D03E04280BE64D00D2CAC3 /* Tool */,
 				A6D03E00280BBBF300D2CAC3 /* VoiceSearchCenter */,
 				9B5954B6280A9C5600A3022E /* Common.h */,
 				9B5954AB280A878500A3022E /* Category */,
@@ -253,6 +257,15 @@
 			path = VoiceSearchCenter;
 			sourceTree = "<group>";
 		};
+		A6D03E04280BE64D00D2CAC3 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				A6D03E05280BE6A000D2CAC3 /* VoiceBroadcastTool.h */,
+				A6D03E06280BE6A000D2CAC3 /* VoiceBroadcastTool.m */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -333,6 +346,7 @@
 				A6D03E03280BBC4000D2CAC3 /* VoiceSearchCenter.m in Sources */,
 				9B5954B9280AAC2100A3022E /* MusicModel.m in Sources */,
 				9B5954AA280A7FE000A3022E /* MusicPlayerCenter.m in Sources */,
+				A6D03E07280BE6A000D2CAC3 /* VoiceBroadcastTool.m in Sources */,
 				9B595486280A7AF200A3022E /* main.m in Sources */,
 				A6D03DEB280AB5F500D2CAC3 /* HomeViewController.m in Sources */,
 				A6D03DF8280AEA8200D2CAC3 /* MusicPlayerView.m in Sources */,

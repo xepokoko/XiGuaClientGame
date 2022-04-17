@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) UIView *view;
 
-@property (nonatomic, copy) NSString *text;
 
 + (instancetype)defaultCenter;
 - (void)setFrameWithRect:(CGRect)rect;

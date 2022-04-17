@@ -89,4 +89,18 @@
         [self.playBtn setImage:[UIImage systemImageNamed:@"play.fill" configurationWithFontOfSize:50] forState:UIControlStateNormal];
     }
 }
+
+#pragma mark - 设置旁白
+- (void)setVoiceOver {
+    
+    _lastSongBtn.accessibilityLabel = @"上一首";
+    _lastSongBtn.accessibilityHint = @"点击后将为你播放歌单中的上一首歌曲";
+    
+    _nextSongBtn.accessibilityLabel = @"下一首";
+    _nextSongBtn.accessibilityHint = @"点击后将为你播放歌单中的下一首歌曲";
+    
+    _playBtn.accessibilityLabel = @"播放或暂停";
+    _playBtn.accessibilityHint = @"点击后将为你播放歌曲或暂停播放";
+
+}
 @end

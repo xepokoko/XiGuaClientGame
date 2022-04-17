@@ -7,12 +7,18 @@
 #import "VoiceSearchCenter.h"
 #import "Common.h"
 #import "UIImage+SFFont.h"
+#import <AVFoundation/AVFoundation.h>
+#import "VoiceBroadcastTool.h"
+
 
 static VoiceSearchCenter *voiceSearchCenter;
 
 @interface VoiceSearchCenter ()
 
 @property (nonatomic, strong) UIButton *searchBtn;
+
+@property (nonatomic, copy) NSString* displayPinYinContStr;
+
 @end
 
 
@@ -58,8 +64,12 @@ static VoiceSearchCenter *voiceSearchCenter;
 
 
 - (void)voiceSearch {
-    self.text = @"已搜索到歌曲陀飞轮，单击返回，双击播放";
+   
+    self.displayPinYinContStr = @"你搜索到的歌曲为：陀飞轮。双击播放";
+    VoiceBroadcastTool *tool = [[VoiceBroadcastTool alloc] init];
+    [tool voiceBroadcastWithString:self.displayPinYinContStr];
     
+   
 }
 
 
@@ -80,4 +90,6 @@ static VoiceSearchCenter *voiceSearchCenter;
     
     
 }
+    
+#pragma mark - 设置播报内容
 @end
