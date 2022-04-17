@@ -7,6 +7,7 @@
 
 #import "DailyRecmViewController.h"
 #import "ListTableViewCell.h"
+#import "VoiceBroadcastTool.h"
 
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
@@ -42,6 +43,10 @@
     [self.view addSubview:self.tableView];
     self.title = @"每日推荐";
 
+    VoiceBroadcastTool *VBTool = [[VoiceBroadcastTool alloc] init];
+    
+    [VBTool voiceBroadcastWithString:[NSString stringWithFormat:@"今日为您推荐了%ld首歌曲", self.musicList.count]];
+    
 }
 
 - (UITableView *)tableView {
