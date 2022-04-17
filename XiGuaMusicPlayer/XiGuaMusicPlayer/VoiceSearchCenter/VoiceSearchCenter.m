@@ -68,6 +68,8 @@ static VoiceSearchCenter *voiceSearchCenter;
     self.displayPinYinContStr = @"你搜索到的歌曲为：陀飞轮。双击播放";
     VoiceBroadcastTool *tool = [[VoiceBroadcastTool alloc] init];
     [tool voiceBroadcastWithString:self.displayPinYinContStr];
+    //自定义聚焦的控件，用于播放指定歌曲
+    UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification,  self.focusObj);
     
    
 }
