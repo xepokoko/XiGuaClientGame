@@ -63,6 +63,8 @@
     
     self.title = [MusicPlayerCenter defaultCenter].music.songName;
     [self updateLikeBtn];
+    
+    [self setVoiceOver];
 }
 
 - (void)layoutSubviews {
@@ -143,6 +145,71 @@
         buttonY += buttonH;
     }
 }
+
+#pragma mark - voiceOver
+- (void)setVoiceOver {
+    _processSlider.accessibilityLabel = @"播放进度";
+    _processSlider.accessibilityValue = [NSString stringWithFormat:@"%f",[MusicPlayerCenter defaultCenter].player.currentTime];
+    _processSlider.accessibilityHint = @"上滑前进，下滑后退";
+    
+    _volumeSlider.accessibilityLabel = @"音量大小";
+    _volumeSlider.accessibilityHint = @"上滑增大音量，下滑减小音量";
+    
+    _backwardBtn.accessibilityLabel = @"上一首";
+    _backwardBtn.accessibilityHint = @"双击播放上一首";
+    
+    _forwardBtn.accessibilityLabel = @"下一首";
+    _forwardBtn.accessibilityHint = @"双击播放下一首";
+    
+    [self updateLikeBtnVoiceOver];
+    
+    [self updatePlayPauseBtnVoiceOver];
+    
+    _playModeBtn.accessibilityLabel = @"播放模式";
+    [self updatePlayModeBtnVoiceOver];
+}
+
+/// 改变 likeBtn voiceOver
+- (void)updateLikeBtnVoiceOver {
+    if ([[MusicPlayerCenter defaultCenter].music isFavorite]) {
+        _likeBtn.accessibilityLabel = @"取消喜欢";
+        _likeBtn.accessibilityHint = @"双击取消喜欢歌曲";
+    } else {
+        _likeBtn.accessibilityLabel = @"喜欢";
+        _likeBtn.accessibilityHint = @"双击设置喜欢歌曲";
+    }
+}
+
+/// 改变playPausebtn voiceOver
+- (void)updatePlayPauseBtnVoiceOver {
+    NSString *valueString = [NSString string];
+}
+
+/// 改变 playModeBtn VoiceOver
+- (void)updatePlayModeBtnVoiceOver {
+    NSString *valueString = [NSString string];
+    NSString *hintString = [NSString string];
+    
+    switch ([MusicPlayerCenter defaultCenter].playMode) {
+        case MusicPlayModeRepeat:
+            valueString = @"列表循环";
+            hintString = @"双击切换为单曲循环";
+            break;
+        case MusicPlayModeRepeatOne:
+            valueString = @"单曲循环";
+            hintString = @"双击切换为随机播放";
+            break;
+        case MusicPlayModeShuffle:
+            valueString = @"随机播放";
+            hintString = @"双击切换为列表循环";
+            break;
+        default:
+            break;
+    }
+    _playModeBtn.accessibilityValue = valueString;
+    _playModeBtn.accessibilityHint = hintString;
+}
+
 
 #pragma mark - 按钮点击事件
 /// 点击上一首

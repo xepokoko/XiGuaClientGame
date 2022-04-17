@@ -46,7 +46,7 @@
         [self addSubview:_playBtn];
         [_playBtn setImage:[UIImage systemImageNamed:@"play.fill" configurationWithFontOfSize:50] forState:UIControlStateNormal];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePlayPauseButton) name:@"updatePlayPasuseButtonNotification" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePlayPauseBtn) name:@"updatePlayPauseBtnNotification" object:nil];
         
     }
     return self;
@@ -74,17 +74,15 @@
     
     if ([playerCenter isPlaying]) {
         [button setImage:[UIImage systemImageNamed:@"play.fill" configurationWithFontOfSize:50] forState:UIControlStateNormal];
-        
+
     } else {
         [button setImage:[UIImage systemImageNamed:@"pause.fill" configurationWithFontOfSize:50] forState:UIControlStateNormal];
     }
     [playerCenter togglePlayPause];
-    
-    playerCenter.playing = !playerCenter.playing;
 }
 
 
-- (void)updatePlayPauseButton {
+- (void)updatePlayPauseBtn {
     if ([[MusicPlayerCenter defaultCenter] isPlaying]) {
         [self.playBtn setImage:[UIImage systemImageNamed:@"pause.fill" configurationWithFontOfSize:50] forState:UIControlStateNormal];
     } else {

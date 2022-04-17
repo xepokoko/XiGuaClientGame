@@ -54,7 +54,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         
-    }
+    } 
     return _tableView;
 }
 
