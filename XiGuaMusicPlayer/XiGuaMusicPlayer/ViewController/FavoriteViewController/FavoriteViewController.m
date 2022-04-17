@@ -20,15 +20,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     self.tabBarController.tabBar.hidden = YES;
-    
-    
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
 //    self.tabBarController.tabBar.hidden = NO;
    
-
     
 }
 
@@ -85,7 +81,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
-    return 60;
+    return 90;
 }
 
 

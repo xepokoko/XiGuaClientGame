@@ -26,20 +26,17 @@
     
     if (self) {
         CGFloat padding = 10;
-        CGFloat cardViewW = SCREENWIDTH - 2 * padding;
-        CGFloat cardViewH = 90;
-        CGFloat cardViewX = padding;
-        CGFloat cardViewY = padding;
-        UIView *cardView = [[UIView alloc] initWithFrame:CGRectMake(cardViewX,
-                                                                    cardViewY,
-                                                                    cardViewW,
-                                                                    cardViewH)];
-        cardView.backgroundColor = [UIColor whiteColor];
-        cardView.layer.cornerRadius = 10;
-        [self.contentView addSubview:cardView];
-        self.cardView = cardView;
-        
+
         //初始化控件
+        
+        self.indexLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREENWIDTH-30, 10, 30, 30)];
+        _indexLabel.font = [UIFont systemFontOfSize:14];
+        _indexLabel.textColor = [UIColor systemGrayColor];
+        _indexLabel.text = @"2";
+        [self.contentView addSubview:_indexLabel];
+        
+        
+        
         CGFloat picW = 70;
         CGFloat picH = picW;
         self.picImageView = [[UIImageView alloc]initWithFrame:CGRectMake(padding,
@@ -47,7 +44,8 @@
                                                                          picW,
                                                                          picH)];
         _picImageView.layer.cornerRadius = 10;
-        _picImageView.image = [UIImage imageNamed:_musicModel.songName];
+        _picImageView.clipsToBounds = YES;
+        _picImageView.backgroundColor = [UIColor systemGray6Color];
         [self.contentView addSubview:_picImageView];
         
         CGFloat labelX = CGRectGetMaxX(_picImageView.frame) + padding;
@@ -72,16 +70,7 @@
         _authorLabel.textColor = [UIColor lightGrayColor];
         _authorLabel.text = @"歌手名称";
         [self.contentView addSubview:_authorLabel];
-        
-        self.indexLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREENWIDTH-30, 10, 30, 30)];
-        _indexLabel.font = [UIFont systemFontOfSize:14];
-        _indexLabel.textColor = [UIColor systemGrayColor];
-        _indexLabel.text = @"2";
-        [self.contentView addSubview:_indexLabel];
-        
-        
-        
-        
+            
     }
 
     return self;
@@ -96,7 +85,7 @@
     _authorLabel.text = _musicModel.singerName;
     
     
-    
+    _picImageView.image = [UIImage imageNamed:_musicModel.songName];
 }
 
 

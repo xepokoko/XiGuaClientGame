@@ -32,10 +32,25 @@ typedef enum MusicPlayMode {
 
 
 /// 单例模式，负责管理整个 app 的音乐播放
+/// 各种按钮点击完通过 defaultCenter 获取完单例使用下面的方法
 @interface MusicPlayerCenter : NSObject
 
+/// 播放音乐
+- (void)playMusic;
+
+/// 播放或暂停
+- (void)togglePlayPause;
+
+/// 播放下一首
+- (void)playNextMusic;
+
+/// 播放上一首
+- (void)playLastMusic;
+
 /// 代理
+/// 播放上一首、下一首歌需要去实现代理的对象中寻找歌曲
 @property (nonatomic, weak)id<MusicPlayerCenterDelegate> delegate;
+
 
 /// 模型
 @property (nonatomic, strong)MusicModel *music;
@@ -49,20 +64,8 @@ typedef enum MusicPlayMode {
 /// 播放模式（顺序/单曲循环/随机）
 @property (nonatomic, assign)MusicPlayMode playMode;
 
-/// 计时器（一秒钟更新一次播放进度）
+/// 计时器（一秒钟更新一次播放进度）（可优化）
 @property (assign, nonatomic)NSTimer *progressTimer;
-
-/// 播放音乐
-- (void)playMusic;
-
-/// 播放或暂停
-- (void)togglePlayPause;
-
-/// 播放下一首
-- (void)playNextMusic;
-
-/// 播放上一首
-- (void)playLastMusic;
 
 /// 单例方法
 + (instancetype)defaultCenter;
